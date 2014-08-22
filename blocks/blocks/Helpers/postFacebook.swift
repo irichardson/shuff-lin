@@ -1,0 +1,82 @@
+//
+//  postFacebook.swift
+//  blocks
+//
+//  Created by Ian Richardson on 8/22/14.
+//  Copyright (c) 2014 3 Screen Apps. All rights reserved.
+//
+
+import Foundation
+import Accounts
+import Social
+
+class postFacebook{
+    
+    class func postToFacebook(message: String, appID: String){
+    
+        var accountStore = ACAccountStore()
+        var accountType = accountStore.accountTypeWithAccountTypeIdentifier(ACAccountTypeIdentifierFacebook)
+        
+        var optionsForPosting = [ACFacebookAppIdKey:appID, ACFacebookPermissionsKey: ["email"], ACFacebookAudienceKey: ACFacebookAudienceFriends]
+
+        accountStore.requestAccessToAccountsWithType(accountType, options: optionsForPosting) {
+            granted, error in
+            if granted {
+                    
+                    var options = [ACFacebookAppIdKey:appID, ACFacebookPermissionsKey: ["publish_stream", "publish_actions"], ACFacebookAudienceKey: ACFacebookAudienceFriends]
+    
+                    accountStore.requestAccessToAccountsWithType(accountType, options: options) {
+                        granted, error in
+                        if granted {
+                            var accountsArray = accountStore.accountsWithAccountType(accountType)
+                            
+                                if accountsArray.count > 0 {
+                                var facebookAccount = accountsArray[0] as ACAccount
+                                
+                                var parameters = Dictionary<String, AnyObject>()
+                                parameters["access_token"] = facebookAccount.credential.oauthToken
+                                parameters["message"] = message
+                                
+                                var feedURL = NSURL(string: "https://graph.facebook.com/me/feed")
+
+                                let posts = SLRequest(forServiceType: SLServiceTypeFacebook, requestMethod: SLRequestMethod.POST, URL: feedURL, parameters: parameters)
+                    
+                                let handler: SLRequestHandler =  { (response, urlResponse, error) in
+                                    println(response)
+                                    println(urlResponse.statusCode)
+                                }
+                    
+                                posts.performRequestWithHandler(handler)
+                            }
+                        }
+                        else{
+                            println("Access denied")
+                            println(error.localizedDescription)
+                        }
+                    }
+            }
+            else{
+                println("Access denied")
+                println(error.localizedDescription)
+            }
+        }
+    }
+//                        SLRequest *feedRequest = 
+//                                [SLRequest
+//                        requestForServiceType:SLServiceTypeFacebook
+//                requestMethod:SLRequestMethodPOST
+//                URL:feedURL
+//                parameters:parameters];
+//
+//                [feedRequest 
+//                    performRequestWithHandler:^(NSData *responseData,
+//                    NSHTTPURLResponse *urlResponse, NSError *error)
+//                    {
+//                        NSLog(@"Request failed, %@", 
+//                            [urlResponse description]);
+//                    }];
+    
+    class func postToFacebookWithImage(message: String, appID: String){
+    }
+    
+}

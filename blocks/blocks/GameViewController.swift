@@ -62,7 +62,7 @@ class GameViewController: UIViewController, MFMailComposeViewControllerDelegate 
     }
 
     func sendFacebook(){
-        
+        postFacebook.postToFacebook("Testicles 1 2", appID:"354809358003876")
     }
     
     func sendMail(){

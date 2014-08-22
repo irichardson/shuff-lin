@@ -258,7 +258,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         gameStartsLabel.removeFromParent()
         countDownLabel.removeFromParent()
         timerRemaining = true
-        lettersTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("addLetters"), userInfo: nil, repeats: true)
+        lettersTimer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: Selector("addLetters"), userInfo: nil, repeats: true)
         swipeRecognizer = UISwipeGestureRecognizer(target: self, action: Selector("move:"))
         swipeRecognizer.direction = UISwipeGestureRecognizerDirection.Up
         self.view.addGestureRecognizer(swipeRecognizer)

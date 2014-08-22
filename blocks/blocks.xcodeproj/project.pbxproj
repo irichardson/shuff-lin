@@ -36,6 +36,7 @@
 		3CFCB96C19A76E2600F817E7 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CFCB96B19A76E2600F817E7 /* Social.framework */; };
 		3CFCB96E19A7875500F817E7 /* twitterIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3CFCB96D19A7875500F817E7 /* twitterIcon.png */; };
 		3CFCB97019A7A01B00F817E7 /* postTweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFCB96F19A7A01B00F817E7 /* postTweet.swift */; };
+		3CFCB97219A7C06C00F817E7 /* postFacebook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFCB97119A7C06C00F817E7 /* postFacebook.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +86,7 @@
 		3CFCB96B19A76E2600F817E7 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		3CFCB96D19A7875500F817E7 /* twitterIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = twitterIcon.png; sourceTree = "<group>"; };
 		3CFCB96F19A7A01B00F817E7 /* postTweet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = postTweet.swift; sourceTree = "<group>"; };
+		3CFCB97119A7C06C00F817E7 /* postFacebook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = postFacebook.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -206,6 +208,7 @@
 			children = (
 				3CE6EB8D1981BC9E007868FE /* UIColourFromRGB.swift */,
 				3CFCB96F19A7A01B00F817E7 /* postTweet.swift */,
+				3CFCB97119A7C06C00F817E7 /* postFacebook.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -351,6 +354,7 @@
 				3C6950AB1950D1870051CC5E /* GameViewController.swift in Sources */,
 				3CF17B5B195502320029CC26 /* Word.swift in Sources */,
 				3C6950A51950D1870051CC5E /* AppDelegate.swift in Sources */,
+				3CFCB97219A7C06C00F817E7 /* postFacebook.swift in Sources */,
 				3CE6EB8E1981BC9E007868FE /* UIColourFromRGB.swift in Sources */,
 				3CF17B581954D1DF0029CC26 /* Letter.swift in Sources */,
 			);

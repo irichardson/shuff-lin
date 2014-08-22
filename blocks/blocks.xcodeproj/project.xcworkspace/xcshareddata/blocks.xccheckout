@@ -6,24 +6,40 @@
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>E6097358-3934-4981-A112-5427E8E187F2</string>
+	<key>IDESourceControlProjectName</key>
+	<string>blocks</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
+		<key>6392BC38964734483BFC94308997037464E98388</key>
+		<string>github.com:irichardson/shuff-lin.git</string>
 		<key>72E8AEF8201D0465EAD5BE5475E77330EA7EC0CD</key>
 		<string>https://github.com/mattdonnelly/Swifter.git</string>
 	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>blocks/blocks.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
+		<key>6392BC38964734483BFC94308997037464E98388</key>
+		<string>../../..</string>
 		<key>72E8AEF8201D0465EAD5BE5475E77330EA7EC0CD</key>
-		<string>Swifter/</string>
+		<string>../../../../Swifter</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/mattdonnelly/Swifter.git</string>
+	<string>github.com:irichardson/shuff-lin.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>72E8AEF8201D0465EAD5BE5475E77330EA7EC0CD</string>
+	<string>6392BC38964734483BFC94308997037464E98388</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>6392BC38964734483BFC94308997037464E98388</string>
+			<key>IDESourceControlWCCName</key>
+			<string>shuff-lin</string>
+		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
