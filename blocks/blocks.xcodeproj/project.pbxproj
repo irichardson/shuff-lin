@@ -37,6 +37,9 @@
 		3CFCB96E19A7875500F817E7 /* twitterIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3CFCB96D19A7875500F817E7 /* twitterIcon.png */; };
 		3CFCB97019A7A01B00F817E7 /* postTweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFCB96F19A7A01B00F817E7 /* postTweet.swift */; };
 		3CFCB97219A7C06C00F817E7 /* postFacebook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFCB97119A7C06C00F817E7 /* postFacebook.swift */; };
+		3CFCB97419A814AA00F817E7 /* EarlyRiser.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3CFCB97319A814AA00F817E7 /* EarlyRiser.mp3 */; };
+		3CFCB97619A8150900F817E7 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CFCB97519A8150900F817E7 /* AVFoundation.framework */; };
+		3CFCB97819A8156C00F817E7 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFCB97719A8156C00F817E7 /* AudioManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +90,9 @@
 		3CFCB96D19A7875500F817E7 /* twitterIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = twitterIcon.png; sourceTree = "<group>"; };
 		3CFCB96F19A7A01B00F817E7 /* postTweet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = postTweet.swift; sourceTree = "<group>"; };
 		3CFCB97119A7C06C00F817E7 /* postFacebook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = postFacebook.swift; sourceTree = "<group>"; };
+		3CFCB97319A814AA00F817E7 /* EarlyRiser.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = EarlyRiser.mp3; sourceTree = "<group>"; };
+		3CFCB97519A8150900F817E7 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		3CFCB97719A8156C00F817E7 /* AudioManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +100,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3CFCB97619A8150900F817E7 /* AVFoundation.framework in Frameworks */,
 				3CFCB96C19A76E2600F817E7 /* Social.framework in Frameworks */,
 				3CFCB92F19A762AA00F817E7 /* Accounts.framework in Frameworks */,
 				3CFCB92919A762A200F817E7 /* Twitter.framework in Frameworks */,
@@ -160,6 +167,7 @@
 		3C6950A21950D1870051CC5E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				3CFCB97319A814AA00F817E7 /* EarlyRiser.mp3 */,
 				3CFCB96D19A7875500F817E7 /* twitterIcon.png */,
 				3C3252B119A4B51800FE906D /* dictionary.txt */,
 				3C3252B219A4B51800FE906D /* originalDictionary.txt */,
@@ -219,6 +227,7 @@
 				3CF17B571954D1DF0029CC26 /* Letter.swift */,
 				3CF17B5A195502320029CC26 /* Word.swift */,
 				3CF17B5C1958A7D10029CC26 /* GameManager.swift */,
+				3CFCB97719A8156C00F817E7 /* AudioManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -226,6 +235,7 @@
 		3CFCB86219A749D400F817E7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3CFCB97519A8150900F817E7 /* AVFoundation.framework */,
 				3CFCB96B19A76E2600F817E7 /* Social.framework */,
 				3CFCB86319A749E200F817E7 /* Accounts.framework */,
 				3CFCB86019A6CDBB00F817E7 /* Twitter.framework */,
@@ -317,6 +327,7 @@
 				3CC20A1E19A3E530000062A0 /* scoring.plist in Resources */,
 				3C2A09C0199BF96D00653D65 /* SparksParticles.sks in Resources */,
 				3C58F7F7199BF13E000A7B90 /* spark.png in Resources */,
+				3CFCB97419A814AA00F817E7 /* EarlyRiser.mp3 in Resources */,
 				3C6950B01950D1870051CC5E /* Images.xcassets in Resources */,
 				3CFCB96E19A7875500F817E7 /* twitterIcon.png in Resources */,
 				3C6950A71950D1870051CC5E /* GameScene.sks in Resources */,
@@ -357,6 +368,7 @@
 				3CFCB97219A7C06C00F817E7 /* postFacebook.swift in Sources */,
 				3CE6EB8E1981BC9E007868FE /* UIColourFromRGB.swift in Sources */,
 				3CF17B581954D1DF0029CC26 /* Letter.swift in Sources */,
+				3CFCB97819A8156C00F817E7 /* AudioManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

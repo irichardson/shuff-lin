@@ -35,6 +35,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     //Buttons for the gameplay
     let submit :SKButton = SKButton(imageNamed: "submit")
     let shuffle :SKButton = SKButton(imageNamed: "shuffle")
+    let back :SKButton = SKButton(imageNamed: "homeIcon")
     
     //Gameover overlay that displays final score
     var gameOverOverlay = SKSpriteNode(imageNamed: "endGame")
@@ -88,6 +89,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         timeRemainingLabel.zPosition = 11
         self.addChild(timeRemainingLabel)
         
+        back.setTouchUpInsideTarget(self, action: Selector("backToMenu"))
+        back.size = CGSizeMake(30, 30)
+        back.position = CGPointMake(self.view.frame.width/2, 0)
+        self.addChild(back)
+        
         submit.setTouchUpInsideTarget(self, action: Selector("submitWord"))
         submit.position = CGPointMake(80, shuffle.frame.height/2)
         submit.zPosition = 4
@@ -95,7 +101,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         shuffle.setTouchUpInsideTarget(self, action: Selector("shuffleWord"))
         shuffle.position = CGPointMake(240, shuffle.frame.height/2)
-        shuffle.zPosition = 4
+        shuffle.zPosition = 11
         self.addChild(shuffle)
         
         shelf.position = CGPointMake(self.frame.width/2, shuffle.frame.height+shelf.frame.height/2)
@@ -157,9 +163,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             startTime = currentTime
             countDown = false
         }
-        var countDownInt = gameManager.time - Int(currentTime - startTime)
-        if(countDownInt>(-1)){  //if counting down to 0 show counter
-            timeRemainingLabel.text = "\(countDownInt)"
+        var gameCountDown = gameManager.time - Int(currentTime - startTime)
+        if(gameCountDown>(-1)){  //if counting down to 0 show counter
+            timeRemainingLabel.text = "\(gameCountDown)"
         }
         else {
             gameOver()
@@ -352,5 +358,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 letterBeingSwiped = SKSpriteNode()
             }
         }
-    }    
+    }
+    
+    func backToMenu(){
+        var reveal = SKTransition.crossFadeWithDuration(0.5)
+        var scene = HomeScene.sceneWithSize(self.view.bounds.size)
+        scene.scaleMode = SKSceneScaleMode.AspectFill
+        self.view.presentScene(scene, transition: reveal)
+    }
 }

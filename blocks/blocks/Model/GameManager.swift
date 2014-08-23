@@ -163,6 +163,7 @@ class GameManager{
         }
         self.word.removeAllLetters()
         score += newScore
+        time += newScore
     }
     
     func addLetterToWord(letter: Letter){

@@ -62,6 +62,16 @@ class HomeScene: SKScene, MFMailComposeViewControllerDelegate {
         
         sound = SKButton(imageNamedNormal: "mute", selected: "high_volume")
 
+        var prefs = NSUserDefaults.standardUserDefaults()
+        let music = prefs.boolForKey("music")
+        
+        if music{
+            sound.normalTexture = SKTexture(imageNamed: "high_volume")
+        }
+        else{
+            sound.normalTexture = SKTexture(imageNamed: "mute")
+        }
+
         sound.position = CGPoint(x: sound.frame.width+sound.frame.width/2 + 10, y: sound.frame.height/2)
         sound.setTouchUpInsideTarget(self, action: Selector("soundOnOff"))
         
@@ -105,11 +115,21 @@ class HomeScene: SKScene, MFMailComposeViewControllerDelegate {
             //stop music player
             mute = false
             sound.normalTexture = SKTexture(imageNamed: "mute")
+            AudioManager.sharedInstance.stopAudio()
+            
+            var prefs = NSUserDefaults.standardUserDefaults()
+            prefs.setBool(false, forKey: "music")
+            prefs.synchronize()
         }
         else{
-            //stop music player
+            //play music player
             mute = true
             sound.normalTexture = SKTexture(imageNamed: "high_volume")
+            AudioManager.sharedInstance.playAudio("EarlyRiser", fileType:"mp3", loop:-1)
+            
+            var prefs = NSUserDefaults.standardUserDefaults()
+            prefs.setBool(true, forKey: "music")
+            prefs.synchronize()
         }
     }
     

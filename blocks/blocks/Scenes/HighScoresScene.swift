@@ -76,8 +76,6 @@ class HighScoresScene: SKScene {
         }
     }
     
-    
-    
     func backToMenu(){
         var reveal = SKTransition.crossFadeWithDuration(0.5)
         var scene = HomeScene.sceneWithSize(self.view.bounds.size)

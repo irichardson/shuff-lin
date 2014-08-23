@@ -16,21 +16,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: NSDictionary?) -> Bool {
         // Override point for customization after application launch.
+
+        var prefs = NSUserDefaults.standardUserDefaults()
+        let music = prefs.boolForKey("music")
+        println(music)
         
-//        var prefs = NSUserDefaults.standardUserDefaults()
-//        if let music = prefs.boolForKey("music"){
-//            //Play music
-//            if(music){
-//                
-//            }
-//            else{
-//            }
-//        }
-//        else{
-//            //Dont play music
-//            
-//        }
-//        prefs.synchronize()
+        if music{
+            //Play music
+            AudioManager.sharedInstance.playAudio("EarlyRiser", fileType:"mp3", loop:-1)
+            prefs.setBool(true, forKey: "music")
+        }
+        else{
+            //Dont play music
+            prefs.setBool(false, forKey: "music")
+        }
+        prefs.synchronize()
         
         return true
     }

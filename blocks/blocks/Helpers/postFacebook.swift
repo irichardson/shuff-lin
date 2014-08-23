@@ -61,20 +61,6 @@ class postFacebook{
             }
         }
     }
-//                        SLRequest *feedRequest = 
-//                                [SLRequest
-//                        requestForServiceType:SLServiceTypeFacebook
-//                requestMethod:SLRequestMethodPOST
-//                URL:feedURL
-//                parameters:parameters];
-//
-//                [feedRequest 
-//                    performRequestWithHandler:^(NSData *responseData,
-//                    NSHTTPURLResponse *urlResponse, NSError *error)
-//                    {
-//                        NSLog(@"Request failed, %@", 
-//                            [urlResponse description]);
-//                    }];
     
     class func postToFacebookWithImage(message: String, appID: String){
     }
