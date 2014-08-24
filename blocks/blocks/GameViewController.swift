@@ -119,7 +119,14 @@ class GameViewController: UIViewController, MFMailComposeViewControllerDelegate 
     }
     
     func showTutorial(){
+        var transitionDelegate = TransitionDelegate()
+        
+//        var transitionDelegate = CustomPresentationAnimationController(isPresenting: true)
+        
         var tutorialController = TutorialViewController()
+        tutorialController.transitioningDelegate = transitionDelegate
+        tutorialController.modalPresentationStyle = UIModalPresentationStyle.Custom
+                
         //Display the view controller
         self.presentViewController(tutorialController, animated: true, completion: nil)
     }
