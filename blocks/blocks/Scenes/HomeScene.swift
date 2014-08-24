@@ -152,7 +152,6 @@ class HomeScene: SKScene, MFMailComposeViewControllerDelegate {
     
     func sendFeedback(){
         NSNotificationCenter.defaultCenter().postNotificationName("showMailComposer", object: nil)
-        println("Create an email")
     }
     
     func tutorial(){

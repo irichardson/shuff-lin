@@ -91,7 +91,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         back.setTouchUpInsideTarget(self, action: Selector("backToMenu"))
         back.size = CGSizeMake(30, 30)
-        back.position = CGPointMake(self.view.frame.width/2, 0)
+        back.position = CGPoint(x:self.view.frame.width/2, y:CGRectGetMaxY(self.frame)-10-back.size.height/2)
+        back.zPosition = 11
         self.addChild(back)
         
         submit.setTouchUpInsideTarget(self, action: Selector("submitWord"))
@@ -101,7 +102,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         shuffle.setTouchUpInsideTarget(self, action: Selector("shuffleWord"))
         shuffle.position = CGPointMake(240, shuffle.frame.height/2)
-        shuffle.zPosition = 11
+        shuffle.zPosition = 4
         self.addChild(shuffle)
         
         shelf.position = CGPointMake(self.frame.width/2, shuffle.frame.height+shelf.frame.height/2)

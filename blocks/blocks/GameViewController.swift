@@ -42,6 +42,7 @@ class GameViewController: UIViewController, MFMailComposeViewControllerDelegate 
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "sendMail", name:"showMailComposer", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "sendTweet", name:"twitter", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "sendFacebook", name:"facebook", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "twitterFailed", name:"twitterFailed", object: nil)
 
         if let scene = HomeScene.unarchiveFromFile("HomeScene") as? HomeScene {
             // Configure the view.
@@ -58,7 +59,12 @@ class GameViewController: UIViewController, MFMailComposeViewControllerDelegate 
     }
 
     func sendTweet(){
-        postTweet.tweetWithPhoto("twitterIcon", status: "My highest score in Shuff-Lin is - and my longest word is -")        
+        var alert = UIAlertController(title: "Twitter", message: "Posting your highscore to twitter", preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: {(alert :UIAlertAction!) in
+            postTweet.tweetWithPhoto("twitterIcon", status: "My highest score in Shuff-Lin is - and my longest word is -")
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
     }
 
     func sendFacebook(){
@@ -66,22 +72,29 @@ class GameViewController: UIViewController, MFMailComposeViewControllerDelegate 
     }
     
     func sendMail(){
-        var myMail = MFMailComposeViewController()
-        myMail.mailComposeDelegate = self
+        if(MFMailComposeViewController.canSendMail()){
+            var myMail = MFMailComposeViewController()
+            myMail.mailComposeDelegate = self
         
-        // set the subject
-        myMail.setSubject("Feedback about Shuff-Lin")
+            // set the subject
+            myMail.setSubject("Feedback about Shuff-Lin")
 
-        //To recipients
-        var toRecipients = ["metsul.limited@gmail.com"]
-        myMail.setToRecipients(toRecipients)
+            //To recipients
+            var toRecipients = ["metsul.limited@gmail.com"]
+            myMail.setToRecipients(toRecipients)
 
-        //Add some text to the message body
-        var sentfrom = "Email sent from my Shuff-Lin"
-        myMail.setMessageBody(sentfrom, isHTML: true)
+            //Add some text to the message body
+            var sentfrom = "Email sent from my Shuff-Lin"
+            myMail.setMessageBody(sentfrom, isHTML: true)
 
-        //Display the view controller
-        self.presentViewController(myMail, animated: true, completion: nil)
+            //Display the view controller
+            self.presentViewController(myMail, animated: true, completion: nil)
+        }
+        else{
+            var alert = UIAlertController(title: "Alert", message: "Your device cannot send emails", preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
+        }
     }
 
     func mailComposeController(controller: MFMailComposeViewController!,
@@ -98,6 +111,12 @@ class GameViewController: UIViewController, MFMailComposeViewControllerDelegate 
         self.dismissViewControllerAnimated(true, completion: nil)
     }
 
+    func twitterFailed(){
+        var alert = UIAlertController(title: "Alert", message: "Access to your Twitter account failed", preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
     override func shouldAutorotate() -> Bool {
         return true
     }

@@ -43,6 +43,9 @@ class postTweet{
                     posts.performRequestWithHandler(handler)
                 }
             }
+            else{
+                NSNotificationCenter.defaultCenter().postNotificationName("twitterFailed", object: nil)
+            }
         }
     }
     
@@ -72,6 +75,9 @@ class postTweet{
                     
                     posts.performRequestWithHandler(handler)
                 }
+            }
+            else{
+                NSNotificationCenter.defaultCenter().postNotificationName("twitterFailed", object: nil)                
             }
         }
     }
