@@ -43,6 +43,7 @@ class GameViewController: UIViewController, MFMailComposeViewControllerDelegate 
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "sendTweet", name:"twitter", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "sendFacebook", name:"facebook", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "twitterFailed", name:"twitterFailed", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "showTutorial", name:"showTutorial", object: nil)
 
         if let scene = HomeScene.unarchiveFromFile("HomeScene") as? HomeScene {
             // Configure the view.
@@ -112,9 +113,15 @@ class GameViewController: UIViewController, MFMailComposeViewControllerDelegate 
     }
 
     func twitterFailed(){
-        var alert = UIAlertController(title: "Alert", message: "Access to your Twitter account failed", preferredStyle: UIAlertControllerStyle.Alert)
+        var alert = UIAlertController(title: "Alert", message: "Access to Twitter failed", preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
         self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    func showTutorial(){
+        var tutorialController = TutorialViewController()
+        //Display the view controller
+        self.presentViewController(tutorialController, animated: true, completion: nil)
     }
     
     override func shouldAutorotate() -> Bool {

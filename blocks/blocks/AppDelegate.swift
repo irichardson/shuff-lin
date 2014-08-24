@@ -19,17 +19,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         var prefs = NSUserDefaults.standardUserDefaults()
         let music = prefs.boolForKey("music")
-        println(music)
+        println("music \(music)")
+
+        let firstTime = prefs.boolForKey("firstTime")
+        println("firstTime \(firstTime)")
         
-        if music{
-            //Play music
+        if !firstTime {
             AudioManager.sharedInstance.playAudio("EarlyRiser", fileType:"mp3", loop:-1)
             prefs.setBool(true, forKey: "music")
         }
         else{
-            //Dont play music
-            prefs.setBool(false, forKey: "music")
+            prefs.setBool(true, forKey: "firstTime")
+            if music{
+                //Play music                
+                AudioManager.sharedInstance.playAudio("EarlyRiser", fileType:"mp3", loop:-1)
+            }
         }
+        
         prefs.synchronize()
         
         return true
@@ -49,7 +55,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillEnterForeground(application: UIApplication) {
         var prefs = NSUserDefaults.standardUserDefaults()
         let music = prefs.boolForKey("music")
-        println(music)
+        println("music \(music)")
         
         if music{
             //Play music

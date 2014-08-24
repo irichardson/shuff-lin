@@ -60,7 +60,7 @@ class HomeScene: SKScene, MFMailComposeViewControllerDelegate {
         settings.position = CGPoint(x: settings.frame.width/2, y: settings.frame.height/2)
         settings.setTouchUpInsideTarget(self, action: Selector("gameSettings"))
         
-        sound = SKButton(imageNamedNormal: "mute", selected: "high_volume")
+        sound = SKButton(imageNamedNormal: "high_volume", selected: "mute")
 
         var prefs = NSUserDefaults.standardUserDefaults()
         let music = prefs.boolForKey("music")
@@ -155,7 +155,7 @@ class HomeScene: SKScene, MFMailComposeViewControllerDelegate {
     }
     
     func tutorial(){
-        println("Display tutorial")
+        NSNotificationCenter.defaultCenter().postNotificationName("showTutorial", object: nil)
     }
     
     func twitterPressed(){

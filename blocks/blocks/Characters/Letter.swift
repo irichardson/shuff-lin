@@ -25,6 +25,7 @@ class Letter : SKSpriteNode {
     let finishingLocation: CGFloat = -30
     let topOffset: CGFloat = 100
     let bottomOffset: CGFloat = 125
+    let letterSize: CGFloat = 60
     
     var positionInWord: Int = 0
     var inTransit: Bool = false
@@ -36,7 +37,7 @@ class Letter : SKSpriteNode {
     
     init(letter: String, atPosition position: CGPoint) {
         let texture = SKTexture(imageNamed: letter)
-        let size = CGSizeMake(45, 45)
+        let size = CGSizeMake(letterSize, letterSize)
         letterValue = letter
         super.init(texture: texture, color: SKColor.whiteColor(), size: size)
         self.position = position
@@ -58,8 +59,10 @@ class Letter : SKSpriteNode {
         var hypothenus = sqrt((xAxis * xAxis) + (yAxis * yAxis))
         var time = Double(hypothenus)*speedForShelf
         
-        let action = SKAction.moveTo(CGPointMake(xPosition, bottomOffset), duration: NSTimeInterval(time))
-        self.runAction(action)
+        let moveAction = SKAction.moveTo(CGPointMake(xPosition, bottomOffset), duration: NSTimeInterval(time))
+        let scaleAction = SKAction.scaleTo(0.7, duration: NSTimeInterval(time))
+        self.runAction(scaleAction)
+        self.runAction(moveAction)
     }
     
     func setupPhysics(){

@@ -40,6 +40,7 @@
 		3CFCB97419A814AA00F817E7 /* EarlyRiser.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3CFCB97319A814AA00F817E7 /* EarlyRiser.mp3 */; };
 		3CFCB97619A8150900F817E7 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CFCB97519A8150900F817E7 /* AVFoundation.framework */; };
 		3CFCB97819A8156C00F817E7 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFCB97719A8156C00F817E7 /* AudioManager.swift */; };
+		3CFCB97A19AA450600F817E7 /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFCB97919AA450600F817E7 /* TutorialViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,6 +94,7 @@
 		3CFCB97319A814AA00F817E7 /* EarlyRiser.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = EarlyRiser.mp3; sourceTree = "<group>"; };
 		3CFCB97519A8150900F817E7 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		3CFCB97719A8156C00F817E7 /* AudioManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
+		3CFCB97919AA450600F817E7 /* TutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +158,7 @@
 				3CF17B59195502250029CC26 /* Model */,
 				3C6950A41950D1870051CC5E /* AppDelegate.swift */,
 				3C6950AA1950D1870051CC5E /* GameViewController.swift */,
+				3CFCB97919AA450600F817E7 /* TutorialViewController.swift */,
 				3C6950AC1950D1870051CC5E /* Main.storyboard */,
 				3C6950AF1950D1870051CC5E /* Images.xcassets */,
 				3C6950A21950D1870051CC5E /* Supporting Files */,
@@ -364,6 +367,7 @@
 				3CFCB97019A7A01B00F817E7 /* postTweet.swift in Sources */,
 				3C6950AB1950D1870051CC5E /* GameViewController.swift in Sources */,
 				3CF17B5B195502320029CC26 /* Word.swift in Sources */,
+				3CFCB97A19AA450600F817E7 /* TutorialViewController.swift in Sources */,
 				3C6950A51950D1870051CC5E /* AppDelegate.swift in Sources */,
 				3CFCB97219A7C06C00F817E7 /* postFacebook.swift in Sources */,
 				3CE6EB8E1981BC9E007868FE /* UIColourFromRGB.swift in Sources */,
