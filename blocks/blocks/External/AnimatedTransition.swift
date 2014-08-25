@@ -10,27 +10,60 @@ import UIKit
 
 class AnimatedTransition: NSObject, UIViewControllerAnimatedTransitioning{
     
-    var isPresenting: Bool!
+    let isPresenting :Bool
+    let duration :NSTimeInterval = 0.25
+    
+    init(isPresenting: Bool) {
+        self.isPresenting = isPresenting
+        super.init()
+    }
     
     func transitionDuration(transitionContext: UIViewControllerContextTransitioning!) -> NSTimeInterval {
         return 0.25
     }
 
-    func animateTransition(transitionContext: UIViewControllerContextTransitioning!) {
-        var inView = transitionContext.containerView()
-        var toVC = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)
-        var fromVC = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey)
-        
-        inView.addSubview(toVC.view)
-        
-        var screenRect = UIScreen.mainScreen().bounds
-        toVC.view.frame = CGRectMake(0, screenRect.size.height, fromVC.view.frame.size.width, fromVC.view.frame.size.height)
-        UIView.animateWithDuration(0.25, delay: 0.0, options: nil, animations: {
-            toVC.view.frame = CGRectMake(0, 0, fromVC.view.frame.size.width, fromVC.view.frame.size.height)
+    func animateTransition(transitionContext: UIViewControllerContextTransitioning!)  {
+        if isPresenting {
+            animatePresentationWithTransitionContext(transitionContext)
         }
-        , completion: {(completed: Bool) -> Void in
+        else {
+            animateDismissalWithTransitionContext(transitionContext)
+        }
+    }
+
+
+    // ---- Helper methods
+
+    func animatePresentationWithTransitionContext(transitionContext: UIViewControllerContextTransitioning) {
+        println("animating2")
+        let presentedController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)
+        let presentedControllerView = transitionContext.viewForKey(UITransitionContextToViewKey)!
+        let containerView = transitionContext.containerView()!
+
+        // Position the presented view off the top of the container view
+        presentedControllerView.frame = transitionContext.finalFrameForViewController(presentedController)
+        presentedControllerView.center.y -= containerView.bounds.size.height
+
+        containerView.addSubview(presentedControllerView)
+
+        // Animate the presented view to it's final position
+        UIView.animateWithDuration(self.duration, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.0, options: .AllowUserInteraction, animations: {
+            presentedControllerView.center.y += containerView.bounds.size.height
+        }, completion: {(completed: Bool) -> Void in
             transitionContext.completeTransition(completed)
         })
     }
 
+    func animateDismissalWithTransitionContext(transitionContext: UIViewControllerContextTransitioning) {
+        println("animating1")
+        let presentedControllerView = transitionContext.viewForKey(UITransitionContextFromViewKey)!
+        let containerView = transitionContext.containerView()!
+
+        // Animate the presented view off the bottom of the view
+        UIView.animateWithDuration(self.duration, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.0, options: .AllowUserInteraction, animations: {
+            presentedControllerView.center.y += containerView.bounds.size.height
+        }, completion: {(completed: Bool) -> Void in
+                transitionContext.completeTransition(completed)
+        })
+    }
 }

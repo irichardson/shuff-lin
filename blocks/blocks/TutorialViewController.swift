@@ -44,7 +44,7 @@ class TutorialViewController: UIViewController, UIPageViewControllerDataSource{
         self.pageViewController!.view.frame = CGRectMake(25, 25, self.view.frame.size.width-50, self.view.frame.size.height-50);
         
         self.pageViewController!.view.backgroundColor = UIColor.clearColor()
-        self.view.backgroundColor = UIColor.clearColor()
+//        self.view.backgroundColor = UIColor.clearColor()
         
         self.addChildViewController(self.pageViewController)
         self.view.addSubview(self.pageViewController!.view)
@@ -54,7 +54,7 @@ class TutorialViewController: UIViewController, UIPageViewControllerDataSource{
     func close(sender: UIButton){
         self.dismissViewControllerAnimated(true, completion: nil)
     }
-    
+        
     func pageViewController(pageViewController: UIPageViewController!, viewControllerBeforeViewController viewController: UIViewController!) -> UIViewController!
     {
         var index = (viewController as TutorialContentViewController).pageIndex

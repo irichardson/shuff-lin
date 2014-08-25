@@ -10,32 +10,29 @@ import UIKit
 
 class TransitionDelegate: NSObject, UIViewControllerTransitioningDelegate{
 
+    func presentationControllerForPresentedViewController(presented: UIViewController!, presentingViewController presenting: UIViewController!, sourceViewController source: UIViewController!) -> UIPresentationController! {
+        if presented == self {
+            return TutorialPresentationController(presentedViewController: presented, presentingViewController: presenting)
+        }
+        return nil
+    }
+
     func animationControllerForPresentedController(presented: UIViewController!, presentingController presenting: UIViewController!, sourceController source: UIViewController!) -> UIViewControllerAnimatedTransitioning! {
-        var controller = AnimatedTransition()
-        controller.isPresenting = true
-        return controller
+        if presented == self {
+            return AnimatedTransition(isPresenting: true)
+        }
+        else {
+            return nil
+        }
     }
 
     func animationControllerForDismissedController(dismissed: UIViewController!) -> UIViewControllerAnimatedTransitioning! {
-        var controller = AnimatedTransition()
-        controller.isPresenting = false
-        return controller
+        if dismissed == self {
+            return AnimatedTransition(isPresenting: false)
+        }
+        else {
+            return nil
+        }
     }
     
-    func interactionControllerForPresentation(animator: UIViewControllerAnimatedTransitioning!) -> UIViewControllerInteractiveTransitioning! {
-        return nil
-    }
-    
-    func interactionControllerForDismissal(animator: UIViewControllerAnimatedTransitioning!) -> UIViewControllerInteractiveTransitioning! {
-        return nil
-    }
-    
-//- (id <UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
-//I will fix it later.
-//    AnimatedTransitioning *controller = [[AnimatedTransitioning alloc]init];
-//    controller.isPresenting = NO;
-//    return controller;
-//    return nil;
-//}
-
 }
