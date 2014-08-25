@@ -116,13 +116,29 @@ class GameManager{
     
     func newHighScore() -> Bool{
         var prefs = NSUserDefaults.standardUserDefaults()
-//        if var highScores: [Int] = prefs.arrayForKey("highScores") as? [Int]{
-//            var maxVal = reduce(highScores, highScores[0]) {$0 < $1 ? $1 : $0}
-//            if score > maxVal{
-//                return true
-//            }
-//        }        
+        var scores : [Score] = []
+        if var data: AnyObject = prefs.objectForKey("highScores") {
+            scores = NSKeyedUnarchiver.unarchiveObjectWithData(data as NSData) as [Score]
+            if isScoreBiggerThanCurrentScores(scores){
+                return true
+            }
+        }
         return false
+    }
+    
+    func isScoreBiggerThanCurrentScores(scores : [Score]) -> Bool{
+        var tempScore :Int = 0
+        for score: Score in scores {
+            if tempScore < score.score  {
+                tempScore = score.score
+            }
+        }
+        if tempScore < self.score {
+            return true
+        }
+        else{
+            return false
+        }
     }
     
     func saveScore(){
@@ -133,32 +149,18 @@ class GameManager{
         
             var scores :[Score] = []
             var prefs = NSUserDefaults.standardUserDefaults()
-//            if var highScores: [Score] = prefs.arrayForKey("highScores") as? [Score]{
-//                scores = highScores
-//                if scores.count == 10 {
-//                    scores.removeLast()
-//                }
-//
-//                scores.append(newScore)
-//                //Need to sort the scores at this point but not sure why its not working.....
-//            }
             if var data: AnyObject = prefs.objectForKey("highScores") {
                 scores = NSKeyedUnarchiver.unarchiveObjectWithData(data as NSData) as [Score]
                 if(scores.count == 10){
                     scores.removeLast()
                 }
-                
                 scores.append(newScore)
             }
-
             else{
                 scores = [newScore]
             }
             
             var dataArray = NSKeyedArchiver.archivedDataWithRootObject(scores)
-            
-            println(dataArray)
-            
             prefs.setObject(dataArray, forKey: "highScores")
             prefs.synchronize()
         }
