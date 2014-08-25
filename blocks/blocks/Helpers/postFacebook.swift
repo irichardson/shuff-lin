@@ -13,7 +13,14 @@ import Social
 class postFacebook{
     
     class func postToFacebook(message: String, appID: String){
+        postOnFacebook(message, appID:appID, photo:"", url: "feed")
+    }
     
+    class func postToFacebookWithImage(message: String, appID: String, photo: String){
+        postOnFacebook(message, appID:appID, photo:photo, url: "photos")
+    }
+    
+    class func postOnFacebook(message: String, appID: String, photo: String, url: String){
         var accountStore = ACAccountStore()
         var accountType = accountStore.accountTypeWithAccountTypeIdentifier(ACAccountTypeIdentifierFacebook)
         
@@ -23,47 +30,49 @@ class postFacebook{
             granted, error in
             if granted {
                     
-                    var options = [ACFacebookAppIdKey:appID, ACFacebookPermissionsKey: ["publish_actions"], ACFacebookAudienceKey: ACFacebookAudienceFriends]
-    
-                    accountStore.requestAccessToAccountsWithType(accountType, options: options) {
-                        granted, error in
-                        if granted {
-                            var accountsArray = accountStore.accountsWithAccountType(accountType)
-                            
-                                if accountsArray.count > 0 {
-                                var facebookAccount = accountsArray[0] as ACAccount
-                                
-                                var parameters = Dictionary<String, AnyObject>()
-                                parameters["access_token"] = facebookAccount.credential.oauthToken
-                                parameters["message"] = message
-                                
-                                var feedURL = NSURL(string: "https://graph.facebook.com/me/feed")
+                var options = [ACFacebookAppIdKey:appID, ACFacebookPermissionsKey: ["publish_actions"], ACFacebookAudienceKey: ACFacebookAudienceFriends]
 
-                                let posts = SLRequest(forServiceType: SLServiceTypeFacebook, requestMethod: SLRequestMethod.POST, URL: feedURL, parameters: parameters)
-                    
-                                let handler: SLRequestHandler =  { (response, urlResponse, error) in
-                                    println(response)
-                                    println(error)
-                                    println(urlResponse.statusCode)
-                                }
-                    
-                                posts.performRequestWithHandler(handler)
+                accountStore.requestAccessToAccountsWithType(accountType, options: options) {
+                    granted, error in
+                    if granted {
+                        var accountsArray = accountStore.accountsWithAccountType(accountType)
+                        
+                            if accountsArray.count > 0 {
+                            var facebookAccount = accountsArray[0] as ACAccount
+                            
+                            var parameters = Dictionary<String, AnyObject>()
+                            parameters["access_token"] = facebookAccount.credential.oauthToken
+                            parameters["message"] = message
+                            
+                            var feedURL = NSURL(string: "https://graph.facebook.com/me/\(url)")
+                            let posts = SLRequest(forServiceType: SLServiceTypeFacebook, requestMethod: SLRequestMethod.POST, URL: feedURL, parameters: parameters)
+                                
+                            if countElements(photo) > 0{
+                                var appIcon = UIImage(named: photo)
+                                var iconData = UIImagePNGRepresentation(appIcon)
+                                posts.addMultipartData(iconData, withName: "picture", type: "image/png", filename: "Icon")
                             }
-                        }
-                        else{
-                            println("Access denied")
-                            println(error.localizedDescription)                            
+                
+                            let handler: SLRequestHandler =  { (response, urlResponse, error) in
+                                println(response.description)
+                                println(error)
+                                println(urlResponse.statusCode)
+                            }
+                
+                            posts.performRequestWithHandler(handler)
                         }
                     }
+                    else{
+                        println("Access denied")
+                        println(error.localizedDescription)
+                    }
+                }
             }
             else{
                 println("Access denied")
                 println(error.localizedDescription)
             }
         }
-    }
-    
-    class func postToFacebookWithImage(message: String, appID: String){
     }
     
 }
