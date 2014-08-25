@@ -43,6 +43,7 @@ class GameViewController: UIViewController, MFMailComposeViewControllerDelegate 
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "sendTweet", name:"twitter", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "sendFacebook", name:"facebook", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "twitterFailed", name:"twitterFailed", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "facebookFailed", name:"facebookFailed", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "showTutorial", name:"showTutorial", object: nil)
 
         if let scene = HomeScene.unarchiveFromFile("HomeScene") as? HomeScene {
@@ -60,7 +61,7 @@ class GameViewController: UIViewController, MFMailComposeViewControllerDelegate 
     }
 
     func sendTweet(){
-        var alert = UIAlertController(title: "Twitter", message: "Posting your highscore to twitter", preferredStyle: UIAlertControllerStyle.Alert)
+        var alert = UIAlertController(title: "Twitter", message: "Posting your highscore to Twitter", preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: {(alert :UIAlertAction!) in
             postTweet.tweetWithPhoto("twitterIcon", status: "My highest score in Shuff-Lin is - and my longest word is -")
         }))
@@ -69,7 +70,12 @@ class GameViewController: UIViewController, MFMailComposeViewControllerDelegate 
     }
 
     func sendFacebook(){
-        postFacebook.postToFacebookWithImage("Testicles 1 2", appID:"354809358003876", photo:"twitterIcon")
+        var alert = UIAlertController(title: "Facebook", message: "Posting your highscore to Facebook", preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: {(alert :UIAlertAction!) in
+            postFacebook.postToFacebookWithImage("Testicles 1 2", appID:"354809358003876", photo:"twitterIcon")
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
     }
     
     func sendMail(){
@@ -114,6 +120,12 @@ class GameViewController: UIViewController, MFMailComposeViewControllerDelegate 
 
     func twitterFailed(){
         var alert = UIAlertController(title: "Alert", message: "Access to Twitter failed", preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    func facebookFailed(){
+        var alert = UIAlertController(title: "Alert", message: "Access to Facebook failed", preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
         self.presentViewController(alert, animated: true, completion: nil)
     }

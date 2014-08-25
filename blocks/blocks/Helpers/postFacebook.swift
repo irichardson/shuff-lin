@@ -63,13 +63,13 @@ class postFacebook{
                         }
                     }
                     else{
-                        println("Access denied")
+                        NSNotificationCenter.defaultCenter().postNotificationName("facebookFailed", object: nil)
                         println(error.localizedDescription)
                     }
                 }
             }
             else{
-                println("Access denied")
+                NSNotificationCenter.defaultCenter().postNotificationName("facebookFailed", object: nil)
                 println(error.localizedDescription)
             }
         }
