@@ -13,6 +13,7 @@ class GameManager{
     //Constants
     var min : Int = 0
     var max : Int = 14084
+    let startingY : CGFloat = 50
     //Constants
     
     var score = 0
@@ -98,7 +99,7 @@ class GameManager{
         let letterPosition = arc4random_uniform(5)
         var xPosition:Int = word.generatationPosition[letterPosition.hashValue]
         
-        let letter = Letter(letter: alphabet[Int(randomNumber)], atPosition: CGPointMake(CGFloat(xPosition), 140))
+        let letter = Letter(letter: alphabet[Int(randomNumber)], atPosition: CGPointMake(CGFloat(xPosition), startingY))
         var distance = UIScreen.mainScreen().bounds.height-letter.position.y
         letter.moveUp(Double(distance), speedForScene:Double(speedOfLetters))
         letter.zPosition = 1

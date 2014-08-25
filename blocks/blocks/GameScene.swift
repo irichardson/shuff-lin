@@ -34,7 +34,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     //Buttons for the gameplay
     let submit :SKButton = SKButton(imageNamed: "submit")
-    let shuffle :SKButton = SKButton(imageNamed: "shuffle")
+//    let shuffle :SKButton = SKButton(imageNamed: "shuffle")
     let back :SKButton = SKButton(imageNamed: "homeIcon")
     
     //Gameover overlay that displays final score
@@ -96,16 +96,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         topBar.addChild(back)
         
         submit.setTouchUpInsideTarget(self, action: Selector("submitWord"))
-        submit.position = CGPointMake(80, shuffle.frame.height/2)
+        submit.size = CGSizeMake(self.frame.width, shelf.frame.height)
+        submit.position = CGPointMake(self.frame.width/2, submit.frame.height/2)
         submit.zPosition = 4
         self.addChild(submit)
+//        
+//        shuffle.setTouchUpInsideTarget(self, action: Selector("shuffleWord"))
+//        shuffle.position = CGPointMake(240, shuffle.frame.height/2)
+//        shuffle.zPosition = 4
+//        self.addChild(shuffle)
         
-        shuffle.setTouchUpInsideTarget(self, action: Selector("shuffleWord"))
-        shuffle.position = CGPointMake(240, shuffle.frame.height/2)
-        shuffle.zPosition = 4
-        self.addChild(shuffle)
-        
-        shelf.position = CGPointMake(self.frame.width/2, shuffle.frame.height+shelf.frame.height/2)
+        shelf.position = CGPointMake(self.frame.width/2, submit.frame.height+shelf.frame.height/2)
         shelf.zPosition = 2
         self.addChild(shelf)
         

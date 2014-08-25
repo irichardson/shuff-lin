@@ -24,7 +24,7 @@ class Letter : SKSpriteNode {
     let movementSpeed: CGFloat = 200.0
     let finishingLocation: CGFloat = -30
     let topOffset: CGFloat = 100
-    let bottomOffset: CGFloat = 125
+    let bottomOffset: CGFloat = 75
     let letterSize: CGFloat = 64
     
     var positionInWord: Int = 0
@@ -33,7 +33,7 @@ class Letter : SKSpriteNode {
     
     required init(coder: NSCoder) {
         fatalError("NSCoding not supported")
-}
+    }
     
     init(letter: String, atPosition position: CGPoint) {
         let texture = SKTexture(imageNamed: letter)
