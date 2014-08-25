@@ -59,6 +59,7 @@ class HighScoresScene: SKScene {
                 scoreLabel.position = CGPoint(x:number.frame.width*3, y:CGFloat(yPosition-10));
                 scoreLabel.text = "\(scores[index-1].score) - \(scores[index-1].word)"
                 scoreLabel.name = "HighScores"
+                
                 self.addChild(scoreLabel)
             }
             

@@ -161,6 +161,10 @@ class GameManager{
                 scores = [newScore]
             }
             
+            if scores.count > 1 {
+                scores = sorted(scores) {$0.score > $1.score}
+            }
+            
             var dataArray = NSKeyedArchiver.archivedDataWithRootObject(scores)
             prefs.setObject(dataArray, forKey: "highScores")
             prefs.synchronize()
@@ -178,6 +182,8 @@ class GameManager{
         self.score = 0
         self.time = 60
         self.word.letters.removeAll(keepCapacity: true)
+        self.mostComplexWord = ""
+        self.biggestScore = 0
     }
     
     func addScore(){
