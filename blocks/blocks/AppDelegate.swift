@@ -19,10 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         var prefs = NSUserDefaults.standardUserDefaults()
         let music = prefs.boolForKey("music")
-        println("music \(music)")
-
         let firstTime = prefs.boolForKey("firstTime")
-        println("firstTime \(firstTime)")
         
         if !firstTime {
             AudioManager.sharedInstance.playAudio("EarlyRiser", fileType:"mp3", loop:-1)

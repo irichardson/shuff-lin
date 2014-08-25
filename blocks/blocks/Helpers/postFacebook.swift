@@ -23,7 +23,7 @@ class postFacebook{
             granted, error in
             if granted {
                     
-                    var options = [ACFacebookAppIdKey:appID, ACFacebookPermissionsKey: ["publish_stream", "publish_actions"], ACFacebookAudienceKey: ACFacebookAudienceFriends]
+                    var options = [ACFacebookAppIdKey:appID, ACFacebookPermissionsKey: ["publish_actions"], ACFacebookAudienceKey: ACFacebookAudienceFriends]
     
                     accountStore.requestAccessToAccountsWithType(accountType, options: options) {
                         granted, error in
@@ -43,6 +43,7 @@ class postFacebook{
                     
                                 let handler: SLRequestHandler =  { (response, urlResponse, error) in
                                     println(response)
+                                    println(error)
                                     println(urlResponse.statusCode)
                                 }
                     
@@ -51,7 +52,7 @@ class postFacebook{
                         }
                         else{
                             println("Access denied")
-                            println(error.localizedDescription)
+                            println(error.localizedDescription)                            
                         }
                     }
             }

@@ -12,7 +12,7 @@ class GameManager{
 
     //Constants
     var min : Int = 0
-    var max : Int = 14084
+    var max : Int = 0
     let startingY : CGFloat = 50
     //Constants
     
@@ -61,6 +61,7 @@ class GameManager{
         var possibleContent = String.stringWithContentsOfFile(path!, encoding: NSUTF8StringEncoding, error: nil)
         if let content = possibleContent {
             dictionary = content.componentsSeparatedByString("\n")
+            self.max = dictionary.count-1
         }
     }
     
@@ -184,12 +185,11 @@ class GameManager{
         for letter:Letter in word.letters{
             newScore += scoringDictionary[letter.letterValue]!
         }
-        
+
         if(newScore>biggestScore){
             biggestScore = newScore
             mostComplexWord = self.word.getWord()
-        }
-        
+        }        
         self.word.removeAllLetters()
         score += newScore
         time += newScore

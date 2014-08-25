@@ -31,10 +31,6 @@ class HighScoresScene: SKScene {
         topBar.zPosition = 10
 
         var prefs = NSUserDefaults.standardUserDefaults()
-//        if var savedScores: [Score] = prefs.arrayForKey("highScores") as? [Score]{
-//            scores = savedScores
-//        }
-        
         if var data: AnyObject = prefs.objectForKey("highScores") {
             scores = NSKeyedUnarchiver.unarchiveObjectWithData(data as NSData) as [Score]
         }
