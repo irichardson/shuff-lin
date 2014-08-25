@@ -25,7 +25,7 @@ class Letter : SKSpriteNode {
     let finishingLocation: CGFloat = -30
     let topOffset: CGFloat = 100
     let bottomOffset: CGFloat = 125
-    let letterSize: CGFloat = 60
+    let letterSize: CGFloat = 64
     
     var positionInWord: Int = 0
     var inTransit: Bool = false

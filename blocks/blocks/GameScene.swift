@@ -91,9 +91,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         back.setTouchUpInsideTarget(self, action: Selector("backToMenu"))
         back.size = CGSizeMake(30, 30)
-        back.position = CGPoint(x:self.view.frame.width/2, y:CGRectGetMaxY(self.frame)-10-back.size.height/2)
+        back.position = CGPoint(x:0, y:0)
         back.zPosition = 11
-        self.addChild(back)
+        topBar.addChild(back)
         
         submit.setTouchUpInsideTarget(self, action: Selector("submitWord"))
         submit.position = CGPointMake(80, shuffle.frame.height/2)

@@ -95,8 +95,9 @@ class GameManager{
 
     func addLetters() -> Letter{
         let randomNumber = arc4random_uniform(1000)
-        let letterPosition = arc4random_uniform(7)
-        var xPosition:Int = word.startingPoints[letterPosition.hashValue]
+        let letterPosition = arc4random_uniform(5)
+        var xPosition:Int = word.generatationPosition[letterPosition.hashValue]
+        
         let letter = Letter(letter: alphabet[Int(randomNumber)], atPosition: CGPointMake(CGFloat(xPosition), 140))
         var distance = UIScreen.mainScreen().bounds.height-letter.position.y
         letter.moveUp(Double(distance), speedForScene:Double(speedOfLetters))

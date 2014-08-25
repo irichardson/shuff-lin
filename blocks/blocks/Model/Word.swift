@@ -13,6 +13,7 @@ class Word {
     let maxSize = 7
     var letters = [Letter]()
     let startingPoints = [22, 68, 114, 160, 206, 252, 298]
+    let generatationPosition = [32, 96, 160, 224, 288]
     
     func getStartingPosition() -> Int{
         if(letters.count>0){
