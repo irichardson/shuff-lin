@@ -16,6 +16,13 @@ class TutorialViewController: UIViewController, UIPageViewControllerDataSource{
     var pageImages : Array<String> = ["a", "b", "c"]
     var currentIndex : Int = 0
 
+    lazy var dimmingView :UIView = {
+        let view = UIView(frame: self.view.frame)
+        view.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.5)
+        view.alpha = 0.0
+        return view
+    }()
+
     override func viewWillLayoutSubviews() {
         
     }
@@ -26,7 +33,9 @@ class TutorialViewController: UIViewController, UIPageViewControllerDataSource{
 
     override func viewDidLoad() {
         super.viewDidLoad()
-                
+        
+        self.view.addSubview(dimmingView)
+        
         close = UIButton.buttonWithType(UIButtonType.System) as UIButton
         close.frame = CGRectMake(self.view.frame.width - 25, 13, 25, 25)
         close.backgroundColor = UIColor.greenColor()
@@ -44,48 +53,46 @@ class TutorialViewController: UIViewController, UIPageViewControllerDataSource{
         self.pageViewController!.view.frame = CGRectMake(25, 25, self.view.frame.size.width-50, self.view.frame.size.height-50);
         
         self.pageViewController!.view.backgroundColor = UIColor.clearColor()
-//        self.view.backgroundColor = UIColor.clearColor()
         
         self.addChildViewController(self.pageViewController)
         self.view.addSubview(self.pageViewController!.view)
-        self.pageViewController!.didMoveToParentViewController(self)            
+        self.pageViewController!.didMoveToParentViewController(self)
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        UIView.animateWithDuration(0.25, animations: {
+            self.dimmingView.alpha = 1.0
+        })
     }
     
     func close(sender: UIButton){
-        self.dismissViewControllerAnimated(true, completion: nil)
+        UIView.animateWithDuration(0.25, delay: 0.0, options: .CurveEaseOut, animations: {
+            self.dimmingView.alpha = 0.0
+        }, completion: { finished in
+            self.dismissViewControllerAnimated(true, completion: nil)
+        })
     }
         
     func pageViewController(pageViewController: UIPageViewController!, viewControllerBeforeViewController viewController: UIViewController!) -> UIViewController!
     {
         var index = (viewController as TutorialContentViewController).pageIndex
-        
         if (index == 0) || (index == NSNotFound) {
             return nil
         }
-        
         index--
-        
-        println("Decreasing Index: \(String(index))")
-        
         return self.viewControllerAtIndex(index)
     }
     
     func pageViewController(pageViewController: UIPageViewController!, viewControllerAfterViewController viewController: UIViewController!) -> UIViewController!
     {
         var index = (viewController as TutorialContentViewController).pageIndex
-
         if index == NSNotFound {
             return nil
         }
-        
         index++
-        
-        println("Increasing Index: \(String(index))")
-        
         if (index == self.pageImages.count) {
             return nil
         }
-        
         return self.viewControllerAtIndex(index)
     }
     
@@ -102,7 +109,6 @@ class TutorialViewController: UIViewController, UIPageViewControllerDataSource{
         pageContentViewController.pageIndex = index
         self.currentIndex = index
         pageContentViewController.viewSetup()
-
 
         return pageContentViewController
     }

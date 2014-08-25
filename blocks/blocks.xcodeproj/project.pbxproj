@@ -31,7 +31,6 @@
 		3CF17B581954D1DF0029CC26 /* Letter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF17B571954D1DF0029CC26 /* Letter.swift */; };
 		3CF17B5B195502320029CC26 /* Word.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF17B5A195502320029CC26 /* Word.swift */; };
 		3CF17B5D1958A7D10029CC26 /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF17B5C1958A7D10029CC26 /* GameManager.swift */; };
-		3CF2F3C319AB3DA200F004E8 /* TutorialPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF2F3C219AB3DA200F004E8 /* TutorialPresentationController.swift */; };
 		3CFCB92919A762A200F817E7 /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CFCB86019A6CDBB00F817E7 /* Twitter.framework */; };
 		3CFCB92F19A762AA00F817E7 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CFCB86319A749E200F817E7 /* Accounts.framework */; };
 		3CFCB96C19A76E2600F817E7 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CFCB96B19A76E2600F817E7 /* Social.framework */; };
@@ -46,8 +45,6 @@
 		3CFCB98519AA746700F817E7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CFCB98419AA746700F817E7 /* CoreGraphics.framework */; };
 		3CFCB98719AA74A400F817E7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CFCB98619AA74A400F817E7 /* Foundation.framework */; };
 		3CFCB98919AA74BA00F817E7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CFCB98819AA74BA00F817E7 /* UIKit.framework */; };
-		3CFCB98B19AA847F00F817E7 /* TransitionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFCB98A19AA847F00F817E7 /* TransitionDelegate.swift */; };
-		3CFCB98D19AA883F00F817E7 /* AnimatedTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFCB98C19AA883F00F817E7 /* AnimatedTransition.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,7 +89,6 @@
 		3CF17B571954D1DF0029CC26 /* Letter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Letter.swift; path = ../Characters/Letter.swift; sourceTree = "<group>"; };
 		3CF17B5A195502320029CC26 /* Word.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Word.swift; sourceTree = "<group>"; };
 		3CF17B5C1958A7D10029CC26 /* GameManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
-		3CF2F3C219AB3DA200F004E8 /* TutorialPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialPresentationController.swift; sourceTree = "<group>"; };
 		3CFCB86019A6CDBB00F817E7 /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
 		3CFCB86319A749E200F817E7 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		3CFCB96B19A76E2600F817E7 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
@@ -107,8 +103,6 @@
 		3CFCB98419AA746700F817E7 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		3CFCB98619AA74A400F817E7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		3CFCB98819AA74BA00F817E7 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		3CFCB98A19AA847F00F817E7 /* TransitionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionDelegate.swift; sourceTree = "<group>"; };
-		3CFCB98C19AA883F00F817E7 /* AnimatedTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedTransition.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,8 +133,6 @@
 		3C369E9D195CB93B003F639F /* External */ = {
 			isa = PBXGroup;
 			children = (
-				3CFCB98A19AA847F00F817E7 /* TransitionDelegate.swift */,
-				3CFCB98C19AA883F00F817E7 /* AnimatedTransition.swift */,
 				3C369EA1195CB983003F639F /* SKButton.h */,
 				3C369E9F195CB965003F639F /* SKButton.m */,
 				3C369E9E195CB964003F639F /* blocks-Bridging-Header.h */,
@@ -273,7 +265,6 @@
 				3C6950AA1950D1870051CC5E /* GameViewController.swift */,
 				3CFCB97919AA450600F817E7 /* TutorialViewController.swift */,
 				3CFCB97B19AA4BCF00F817E7 /* TutorialContentViewController.swift */,
-				3CF2F3C219AB3DA200F004E8 /* TutorialPresentationController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -394,13 +385,11 @@
 				3C07E13F198997EE0045CF43 /* HighScoresScene.swift in Sources */,
 				3C369EA0195CB965003F639F /* SKButton.m in Sources */,
 				3C6950A91950D1870051CC5E /* GameScene.swift in Sources */,
-				3CF2F3C319AB3DA200F004E8 /* TutorialPresentationController.swift in Sources */,
 				3C07E13B1989728D0045CF43 /* HomeScene.swift in Sources */,
 				3CF17B5D1958A7D10029CC26 /* GameManager.swift in Sources */,
 				3CFCB97019A7A01B00F817E7 /* postTweet.swift in Sources */,
 				3C6950AB1950D1870051CC5E /* GameViewController.swift in Sources */,
 				3CF17B5B195502320029CC26 /* Word.swift in Sources */,
-				3CFCB98B19AA847F00F817E7 /* TransitionDelegate.swift in Sources */,
 				3CFCB97C19AA4BCF00F817E7 /* TutorialContentViewController.swift in Sources */,
 				3CFCB97A19AA450600F817E7 /* TutorialViewController.swift in Sources */,
 				3C6950A51950D1870051CC5E /* AppDelegate.swift in Sources */,
@@ -408,7 +397,6 @@
 				3CE6EB8E1981BC9E007868FE /* UIColourFromRGB.swift in Sources */,
 				3CF17B581954D1DF0029CC26 /* Letter.swift in Sources */,
 				3CFCB97819A8156C00F817E7 /* AudioManager.swift in Sources */,
-				3CFCB98D19AA883F00F817E7 /* AnimatedTransition.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
