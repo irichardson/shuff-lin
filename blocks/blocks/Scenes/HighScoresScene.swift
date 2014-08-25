@@ -14,7 +14,7 @@ class HighScoresScene: SKScene {
     let yAnimation = 150
 
     let back :SKButton = SKButton(imageNamed: "homeIcon")
-    var scores :[AnyObject] = []
+    var scores :[Score] = []
     var gameManager = GameManager()
 
     override func didMoveToView(view: SKView) {
@@ -31,8 +31,12 @@ class HighScoresScene: SKScene {
         topBar.zPosition = 10
 
         var prefs = NSUserDefaults.standardUserDefaults()
-        if var savedScores: [Int] = prefs.arrayForKey("highScores") as? [Int]{
-            scores = savedScores
+//        if var savedScores: [Score] = prefs.arrayForKey("highScores") as? [Score]{
+//            scores = savedScores
+//        }
+        
+        if var data: AnyObject = prefs.objectForKey("highScores") {
+            scores = NSKeyedUnarchiver.unarchiveObjectWithData(data as NSData) as [Score]
         }
         
         back.setTouchUpInsideTarget(self, action: Selector("backToMenu"))
@@ -57,7 +61,7 @@ class HighScoresScene: SKScene {
                 scoreLabel.fontSize = 30;
                 scoreLabel.fontColor = UIColor.blackColor()
                 scoreLabel.position = CGPoint(x:number.frame.width*3, y:CGFloat(yPosition-10));
-                scoreLabel.text = "\(scores[index-1]) - "
+                scoreLabel.text = "\(scores[index-1].score) - \(scores[index-1].word)"
                 scoreLabel.name = "HighScores"
                 self.addChild(scoreLabel)
             }

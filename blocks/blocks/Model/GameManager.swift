@@ -27,6 +27,9 @@ class GameManager{
     
     var startTime :NSTimeInterval = NSTimeInterval()
     var timer = NSTimer()
+    
+    var mostComplexWord : String = ""
+    var biggestScore: Int = 0
 
     func loadDictionaries(){
         loadAlphabet()
@@ -65,10 +68,7 @@ class GameManager{
     }
     
     func submitWord(){
-        var word = String()
-        for letter:Letter in self.word.letters{
-            word += letter.letterValue
-        }
+        var word = self.word.getWord()
         word += "\r"
         binarySearch(word, imin: min, imax: max)
     }
@@ -116,31 +116,50 @@ class GameManager{
     
     func newHighScore() -> Bool{
         var prefs = NSUserDefaults.standardUserDefaults()
-        if var highScores: [Int] = prefs.arrayForKey("highScores") as? [Int]{
-            var maxVal = reduce(highScores, highScores[0]) {$0 < $1 ? $1 : $0}
-            if score > maxVal{
-                return true
-            }
-        }        
+//        if var highScores: [Int] = prefs.arrayForKey("highScores") as? [Int]{
+//            var maxVal = reduce(highScores, highScores[0]) {$0 < $1 ? $1 : $0}
+//            if score > maxVal{
+//                return true
+//            }
+//        }        
         return false
     }
     
     func saveScore(){
         if(score>0){
-            var scores :[AnyObject] = []
+            var newScore = Score()
+            newScore.word = mostComplexWord
+            newScore.score = score
+        
+            var scores :[Score] = []
             var prefs = NSUserDefaults.standardUserDefaults()
-            if var highScores: [Int] = prefs.arrayForKey("highScores") as? [Int]{
-                scores = highScores
-                if scores.count == 10 {
+//            if var highScores: [Score] = prefs.arrayForKey("highScores") as? [Score]{
+//                scores = highScores
+//                if scores.count == 10 {
+//                    scores.removeLast()
+//                }
+//
+//                scores.append(newScore)
+//                //Need to sort the scores at this point but not sure why its not working.....
+//            }
+            if var data: AnyObject = prefs.objectForKey("highScores") {
+                scores = NSKeyedUnarchiver.unarchiveObjectWithData(data as NSData) as [Score]
+                if(scores.count == 10){
                     scores.removeLast()
                 }
-                scores.append(score)
-                //Need to sort the scores at this point but not sure why its not working.....
+                
+                scores.append(newScore)
             }
+
             else{
-                scores = [score]
+                scores = [newScore]
             }
-            prefs.setObject(scores, forKey: "highScores")
+            
+            var dataArray = NSKeyedArchiver.archivedDataWithRootObject(scores)
+            
+            println(dataArray)
+            
+            prefs.setObject(dataArray, forKey: "highScores")
             prefs.synchronize()
         }
     }
@@ -163,6 +182,12 @@ class GameManager{
         for letter:Letter in word.letters{
             newScore += scoringDictionary[letter.letterValue]!
         }
+        
+        if(newScore>biggestScore){
+            biggestScore = newScore
+            mostComplexWord = self.word.getWord()
+        }
+        
         self.word.removeAllLetters()
         score += newScore
         time += newScore

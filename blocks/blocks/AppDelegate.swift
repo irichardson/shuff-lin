@@ -47,7 +47,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidEnterBackground(application: UIApplication) {
-        AudioManager.sharedInstance.stopAudio()
+        var prefs = NSUserDefaults.standardUserDefaults()
+        let music = prefs.boolForKey("music")
+        println("music \(music)")
+        
+        if music{
+            //Play music
+            AudioManager.sharedInstance.stopAudio()
+        }
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     }
@@ -60,7 +67,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if music{
             //Play music
             AudioManager.sharedInstance.playAudio("EarlyRiser", fileType:"mp3", loop:-1)
-        
         }
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     }

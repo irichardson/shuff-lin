@@ -31,6 +31,7 @@
 		3CF17B581954D1DF0029CC26 /* Letter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF17B571954D1DF0029CC26 /* Letter.swift */; };
 		3CF17B5B195502320029CC26 /* Word.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF17B5A195502320029CC26 /* Word.swift */; };
 		3CF17B5D1958A7D10029CC26 /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF17B5C1958A7D10029CC26 /* GameManager.swift */; };
+		3CF2F3C519AB6A6000F004E8 /* Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF2F3C419AB6A6000F004E8 /* Score.swift */; };
 		3CFCB92919A762A200F817E7 /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CFCB86019A6CDBB00F817E7 /* Twitter.framework */; };
 		3CFCB92F19A762AA00F817E7 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CFCB86319A749E200F817E7 /* Accounts.framework */; };
 		3CFCB96C19A76E2600F817E7 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CFCB96B19A76E2600F817E7 /* Social.framework */; };
@@ -89,6 +90,7 @@
 		3CF17B571954D1DF0029CC26 /* Letter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Letter.swift; path = ../Characters/Letter.swift; sourceTree = "<group>"; };
 		3CF17B5A195502320029CC26 /* Word.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Word.swift; sourceTree = "<group>"; };
 		3CF17B5C1958A7D10029CC26 /* GameManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
+		3CF2F3C419AB6A6000F004E8 /* Score.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Score.swift; sourceTree = "<group>"; };
 		3CFCB86019A6CDBB00F817E7 /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
 		3CFCB86319A749E200F817E7 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		3CFCB96B19A76E2600F817E7 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
@@ -241,6 +243,7 @@
 				3CF17B5A195502320029CC26 /* Word.swift */,
 				3CF17B5C1958A7D10029CC26 /* GameManager.swift */,
 				3CFCB97719A8156C00F817E7 /* AudioManager.swift */,
+				3CF2F3C419AB6A6000F004E8 /* Score.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -384,6 +387,7 @@
 			files = (
 				3C07E13F198997EE0045CF43 /* HighScoresScene.swift in Sources */,
 				3C369EA0195CB965003F639F /* SKButton.m in Sources */,
+				3CF2F3C519AB6A6000F004E8 /* Score.swift in Sources */,
 				3C6950A91950D1870051CC5E /* GameScene.swift in Sources */,
 				3C07E13B1989728D0045CF43 /* HomeScene.swift in Sources */,
 				3CF17B5D1958A7D10029CC26 /* GameManager.swift in Sources */,

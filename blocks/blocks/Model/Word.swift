@@ -58,4 +58,12 @@ class Word {
             letter.wiggle()
         }
     }
+    
+    func getWord() -> String{
+        var word : String = ""
+        for letter:Letter in self.letters{
+            word += letter.letterValue
+        }
+        return word
+    }
 }
