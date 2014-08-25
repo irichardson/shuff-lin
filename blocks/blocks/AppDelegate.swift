@@ -27,9 +27,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if !firstTime {
             AudioManager.sharedInstance.playAudio("EarlyRiser", fileType:"mp3", loop:-1)
             prefs.setBool(true, forKey: "music")
+            prefs.setBool(true, forKey: "firstTime")
         }
         else{
-            prefs.setBool(true, forKey: "firstTime")
             if music{
                 //Play music                
                 AudioManager.sharedInstance.playAudio("EarlyRiser", fileType:"mp3", loop:-1)

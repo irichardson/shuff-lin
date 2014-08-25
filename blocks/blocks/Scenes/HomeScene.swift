@@ -59,17 +59,17 @@ class HomeScene: SKScene, MFMailComposeViewControllerDelegate {
         
         settings.position = CGPoint(x: settings.frame.width/2, y: settings.frame.height/2)
         settings.setTouchUpInsideTarget(self, action: Selector("gameSettings"))
-        
-        sound = SKButton(imageNamedNormal: "high_volume", selected: "mute")
 
         var prefs = NSUserDefaults.standardUserDefaults()
         let music = prefs.boolForKey("music")
         
-        if music{
-            sound.normalTexture = SKTexture(imageNamed: "high_volume")
+        if !music{
+            mute = false
+            sound = SKButton(imageNamedNormal: "mute", selected: "high_volume")
         }
         else{
-            sound.normalTexture = SKTexture(imageNamed: "mute")
+            mute = true
+            sound = SKButton(imageNamedNormal: "high_volume", selected: "mute")
         }
 
         sound.position = CGPoint(x: sound.frame.width+sound.frame.width/2 + 10, y: sound.frame.height/2)

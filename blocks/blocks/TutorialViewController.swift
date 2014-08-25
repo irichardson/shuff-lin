@@ -23,9 +23,7 @@ class TutorialViewController: UIViewController, UIPageViewControllerDataSource{
         return view
     }()
 
-    override func viewWillLayoutSubviews() {
-        
-    }
+    override func viewWillLayoutSubviews() {}
 
     override func prefersStatusBarHidden() -> Bool {
         return true
