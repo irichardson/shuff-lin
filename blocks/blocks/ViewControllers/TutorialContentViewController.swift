@@ -26,7 +26,7 @@ class TutorialContentViewController: UIPageViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        var image = UIImage(named: self.imageName)        
+        var image = UIImage(named: self.imageName)
         image = ImageHelper.imageScaledToSize(image, newSize: viewSize)
 
         self.imageView = UIImageView(frame: CGRectMake(0, 0, viewSize.width, viewSize.height))

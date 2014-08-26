@@ -13,9 +13,8 @@ class HighScoresScene: SKScene {
     let iPhone4 = 480
     let yAnimation = 150
 
-    let back :SKButton = SKButton(imageNamed: "homeIcon")
+    var back :SKButton = SKButton()
     var scores :[Score] = []
-    var gameManager = GameManager()
     var previousLocation = CGPoint()
     
     //ScrollView
@@ -34,6 +33,7 @@ class HighScoresScene: SKScene {
         topBar.position = CGPointMake(self.frame.width/2, self.frame.height-topBar.frame.height/2)
         topBar.zPosition = 10
         
+        back = SKButton(imageNamed: "homeIcon")
         back.setTouchUpInsideTarget(self, action: Selector("backToMenu"))
         back.size = CGSizeMake(30, 30)
         back.position = CGPointMake(-130, 0)
@@ -83,7 +83,6 @@ class HighScoresScene: SKScene {
         var reveal = SKTransition.crossFadeWithDuration(0.5)
         var scene = HomeScene.sceneWithSize(self.view.bounds.size)
         scene.scaleMode = SKSceneScaleMode.AspectFill
-        scene.gameManager = gameManager
         self.view.presentScene(scene, transition: reveal)
     }
 }

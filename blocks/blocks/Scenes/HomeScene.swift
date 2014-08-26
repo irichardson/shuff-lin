@@ -12,8 +12,6 @@ import MessageUI
 
 class HomeScene: SKScene, MFMailComposeViewControllerDelegate {
     
-    var gameManager :GameManager = GameManager()
-    
     let start :SKButton = SKButton(imageNamed: "play")
     let scores :SKButton = SKButton(imageNamed: "highscore")
 
@@ -171,7 +169,6 @@ class HomeScene: SKScene, MFMailComposeViewControllerDelegate {
         var reveal = SKTransition.crossFadeWithDuration(0.5)
         var scene = GameScene.sceneWithSize(self.view.bounds.size)
         scene.scaleMode = SKSceneScaleMode.AspectFill
-        scene.gameManager = self.gameManager
         self.view.presentScene(scene, transition: reveal)
     }
 
@@ -179,7 +176,6 @@ class HomeScene: SKScene, MFMailComposeViewControllerDelegate {
         var reveal = SKTransition.crossFadeWithDuration(0.5)
         var scene = HighScoresScene.sceneWithSize(self.view.bounds.size)
         scene.scaleMode = SKSceneScaleMode.AspectFill
-        scene.gameManager = gameManager
         self.view.presentScene(scene, transition: reveal)
     }
 

@@ -241,11 +241,26 @@ class GameManager{
             }
         }
         
-        if(touchingLetters.count>0){
-            word.letters.removeAtIndex(letter.positionInWord)
-            word.letters.insert(letter, atIndex: touchingLetters[0].positionInWord)
-        }        
+        if(touchingLetters.count>0 ){
+            if touchingLetters.count<2 {
+                self.moveLetterToPosition(letter.positionInWord, newPosition: touchingLetters[0].positionInWord, letter: letter)
+            }
+            else{
+                if letter.positionInWord < touchingLetters[0].positionInWord {
+                    self.moveLetterToPosition(letter.positionInWord, newPosition: touchingLetters[0].positionInWord, letter: letter)
+                }
+                else{
+                    self.moveLetterToPosition(letter.positionInWord, newPosition: touchingLetters[1].positionInWord, letter: letter)
+                }                
+            }
+        }
+        
         word.arrangeLetters()
+    }
+    
+    func moveLetterToPosition(letterPosition: Int, newPosition: Int, letter: Letter){
+        word.letters.removeAtIndex(letterPosition)
+        word.letters.insert(letter, atIndex: newPosition)
     }
     
 }

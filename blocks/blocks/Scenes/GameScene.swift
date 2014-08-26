@@ -257,7 +257,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         var scene = HomeScene.sceneWithSize(self.view.bounds.size)
         scene.scaleMode = SKSceneScaleMode.AspectFill
         gameManager.reset()
-        scene.gameManager = gameManager
         self.view.presentScene(scene, transition: reveal)
     }
     
@@ -341,7 +340,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         for touch: AnyObject in touches {
             let location = touch.locationInNode(self)
             var node = self.nodeAtPoint(location)
-            let prevLocation = touch.previousLocationInNode(self)
             if node is Letter{
                 let letter = node as Letter
                 letter.position = CGPointMake(location.x, location.y)
