@@ -1,5 +1,8 @@
 shuff-lin
 =========
+
+Requirements: XCode6
+
 Simple game about making as many words as possible in 60 seconds.
 
 Letters move up the screen at speed. The goal is to tap or swipe them onto the shelf bellow and construct words.
