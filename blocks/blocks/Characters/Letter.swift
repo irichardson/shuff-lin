@@ -65,14 +65,6 @@ class Letter : SKSpriteNode {
         self.runAction(moveAction)
     }
     
-    func setupPhysics(){
-        self.physicsBody = SKPhysicsBody(rectangleOfSize:self.frame.size)
-        self.physicsBody.dynamic = true
-        self.physicsBody.categoryBitMask = ColliderType.Letter.toRaw()
-        self.physicsBody.contactTestBitMask = ColliderType.Letter.toRaw()
-        self.physicsBody.collisionBitMask = 0;
-    }
-    
     func moveUp(distance: Double, speedForScene: Double){
         var time = distance * speedForScene
         let action = SKAction.moveTo(CGPointMake(self.position.x, UIScreen.mainScreen().bounds.height+self.frame.size.height), duration: time)

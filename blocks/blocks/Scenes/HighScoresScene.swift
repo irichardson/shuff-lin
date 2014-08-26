@@ -12,6 +12,7 @@ class HighScoresScene: SKScene {
 
     let iPhone4 = 480
     let yAnimation = 150
+    var yPositionNumber = 490
 
     var back :SKButton = SKButton()
     var scores :[Score] = []
@@ -48,11 +49,11 @@ class HighScoresScene: SKScene {
             scores = NSKeyedUnarchiver.unarchiveObjectWithData(data as NSData) as [Score]
         }
 
-        var yPosition = 490
         var imageSize:CGFloat = 45.0
         
+        //Reduce the highscore list to fit on iPhone 4s
         if(Int(UIScreen.mainScreen().bounds.height) == iPhone4){
-            yPosition = 400
+            yPositionNumber = 400
             imageSize = 35.0
         }
         
@@ -60,7 +61,7 @@ class HighScoresScene: SKScene {
             var number = SKSpriteNode(imageNamed: "\(index)")
             number.name = "HighScores"
             number.size = CGSizeMake(imageSize, imageSize)
-            number.position = CGPointMake(number.frame.width, CGFloat(yPosition))
+            number.position = CGPointMake(number.frame.width, CGFloat(yPositionNumber))
             self.addChild(number)
             
             if(scores.count >= index){
@@ -68,14 +69,14 @@ class HighScoresScene: SKScene {
                 scoreLabel.fontSize = 30;
                 scoreLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Left
                 scoreLabel.fontColor = UIColor.blackColor()
-                scoreLabel.position = CGPoint(x:number.frame.origin.x + number.frame.width + 10, y:CGFloat(yPosition-10));
+                scoreLabel.position = CGPoint(x:number.frame.origin.x + number.frame.width + 10, y:CGFloat(yPositionNumber-10));
                 scoreLabel.text = "\(scores[index-1].score) - \(scores[index-1].word)"
                 scoreLabel.name = "HighScores"
                 
                 self.addChild(scoreLabel)
             }
             
-            yPosition -= Int(imageSize)+5
+            yPositionNumber -= Int(imageSize)+5
         }
     }
     

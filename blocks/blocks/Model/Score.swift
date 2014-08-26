@@ -10,6 +10,7 @@ import Foundation
 
 class Score: NSObject, NSCoding{
     
+    //Expand to include time spent in game screen also
     var score : Int = 0
     var word : String!
     

@@ -14,8 +14,6 @@ class HomeScene: SKScene, MFMailComposeViewControllerDelegate {
     
     let start :SKButton = SKButton(imageNamed: "play")
     let scores :SKButton = SKButton(imageNamed: "highscore")
-
-    var splashScreen = UIImageView(image: UIImage(contentsOfFile: "splashScreen"))
     
     var settingsOpen = false
     var shareOpen = false
@@ -34,14 +32,10 @@ class HomeScene: SKScene, MFMailComposeViewControllerDelegate {
     
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
-        splashScreen.frame = CGRectMake(0, 0, self.view.bounds.width, self.view.bounds.height)
-//        self.view.addSubview(splashScreen)
         buildWorld()
     }
 
     func buildWorld(){
-//        self.splashScreen.removeFromSuperview()
-        
         self.backgroundColor = UIColor.whiteColor()
         start.setTouchUpInsideTarget(self, action: Selector("startGame"))
         start.position = CGPointMake(self.view.bounds.size.width/2, self.view.bounds.size.height/2)
@@ -131,23 +125,6 @@ class HomeScene: SKScene, MFMailComposeViewControllerDelegate {
         }
     }
     
-    func shareOptions(){
-        if settingsOpen {
-            closeSettings()
-        }
-    
-        if shareOpen {
-            closeShare()
-        }
-        else{
-            var close = SKAction.rotateByAngle(-2, duration: 0.5)
-            var open = SKAction.rotateByAngle(-2, duration: 0.5)
-            share.runAction(close)
-            shareShelf.runAction(open)
-            shareOpen = true
-        }
-    }
-    
     func sendFeedback(){
         NSNotificationCenter.defaultCenter().postNotificationName("showMailComposer", object: nil)
     }
@@ -179,6 +156,23 @@ class HomeScene: SKScene, MFMailComposeViewControllerDelegate {
         self.view.presentScene(scene, transition: reveal)
     }
 
+    func shareOptions(){
+        if settingsOpen {
+            closeSettings()
+        }
+    
+        if shareOpen {
+            closeShare()
+        }
+        else{
+            var close = SKAction.rotateByAngle(-2, duration: 0.5)
+            var open = SKAction.rotateByAngle(-2, duration: 0.5)
+            share.runAction(close)
+            shareShelf.runAction(open)
+            shareOpen = true
+        }
+    }
+    
     func gameSettings(){
         if shareOpen {
             closeShare()

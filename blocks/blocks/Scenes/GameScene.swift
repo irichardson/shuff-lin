@@ -9,7 +9,7 @@
 import SpriteKit
 import UIKit
 
-class GameScene: SKScene, SKPhysicsContactDelegate {
+class GameScene: SKScene{
     
     var startGamePlay :Bool = true
     var gameHasStarted :Bool = false
@@ -34,7 +34,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     //Buttons for the gameplay
     let submit :SKButton = SKButton(imageNamed: "submit")
-//    let shuffle :SKButton = SKButton(imageNamed: "shuffle")
     let back :SKButton = SKButton(imageNamed: "homeIcon")
     
     //Gameover overlay that displays final score
@@ -63,8 +62,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             })
         })
         
-        self.physicsWorld.gravity = CGVectorMake(0,0)
-        self.physicsWorld.contactDelegate = self
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "wordFound", name:"wordFound", object: nil)
         buildWorld()
     }
@@ -100,11 +97,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         submit.position = CGPointMake(self.frame.width/2, submit.frame.height/2)
         submit.zPosition = 4
         self.addChild(submit)
-//        
-//        shuffle.setTouchUpInsideTarget(self, action: Selector("shuffleWord"))
-//        shuffle.position = CGPointMake(240, shuffle.frame.height/2)
-//        shuffle.zPosition = 4
-//        self.addChild(shuffle)
         
         shelf.position = CGPointMake(self.frame.width/2, submit.frame.height+shelf.frame.height/2)
         shelf.zPosition = 2
@@ -275,27 +267,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func move(swipe:UILongPressGestureRecognizer){
         if let letter = letterBeingSwiped as? Letter{
             gameManager.letterFlicked(letter)
-//            var sparks = NSBundle.mainBundle().pathForResource("SparksParticles", ofType: "sks")
-//            var burstSpark = NSKeyedUnarchiver.unarchiveObjectWithFile(sparks!) as SKEmitterNode
-//            burstSpark.targetNode = letter
-//            letter.addChild(burstSpark)
+            
+            //Add particle sparks when XCode is NOT SHIT ANYMORE!!!!!
             letter.runAction(SKAction.scaleTo(0.0, duration: 0.5), completion:{letter.removeFromParent()})
             letterBeingSwiped = SKSpriteNode()
             
+            //Add particle sparks when XCode is NOT SHIT ANYMORE!!!!!
             scoreLabel.text = "\(gameManager.score)"
-//            var scoreBurstSpark = NSKeyedUnarchiver.unarchiveObjectWithFile(sparks!) as SKEmitterNode
-//            scoreBurstSpark.targetNode = scoreLabel
-//            scoreLabel.addChild(scoreBurstSpark)
         }
     }
     
     //If the word is legit, animate the latters away
     func wordFound(){
+        //Particle sparks are broken!!!!! XCode blows!!!!
         scoreLabel.text = "\(gameManager.score)"
-//        var sparks = NSBundle.mainBundle().pathForResource("SparksParticles", ofType: "sks")
-//        var burstSpark = NSKeyedUnarchiver.unarchiveObjectWithFile(sparks!) as SKEmitterNode
-//        burstSpark.targetNode = scoreLabel
-//        scoreLabel.addChild(burstSpark)
     }
     
     //Submit word button pressed
@@ -326,7 +311,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         var node = self.nodeAtPoint(point)
         if node is Letter{
             let letter = node as Letter
-            if !gameManager.nodeOnWordShelf(letter){
+            if !gameManager.letterOnWordShelf(letter){
                 gameManager.word.bringLetterToFront(letter)
             }
             else{

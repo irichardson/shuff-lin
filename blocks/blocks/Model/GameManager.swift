@@ -30,7 +30,10 @@ class GameManager{
     
     var mostComplexWord : String = ""
     var biggestScore: Int = 0
-
+    
+    init(){        
+    }
+    
     func loadDictionaries(){
         loadAlphabet()
         loadScoreDictionary()
@@ -63,9 +66,6 @@ class GameManager{
             dictionary = content.componentsSeparatedByString("\n")
             self.max = dictionary.count-1
         }
-    }
-    
-    init(){        
     }
     
     func submitWord(){
@@ -171,7 +171,7 @@ class GameManager{
         }
     }
     
-    func nodeOnWordShelf(letter: Letter) -> Bool{
+    func letterOnWordShelf(letter: Letter) -> Bool{
         if find(word.letters, letter) != nil{
             return true
         }
@@ -201,15 +201,18 @@ class GameManager{
         time += newScore
     }
     
+    func canAddLetter() -> Bool{
+        return word.letters.count < word.maxSize
+    }
+    
     func addLetterToWord(letter: Letter){
         letter.removeAllActions()
         letter.xScale = 1.0
         letter.yScale = 1.0
         letter.zPosition = 3
-        if !nodeOnWordShelf(letter){
+        if !letterOnWordShelf(letter){
             if(canAddLetter()){
                 if !letter.inTransit{
-                    //We can use this for sparks or collisions later
                     word.letters.append(letter)
                     letter.positionInWord = find(word.letters, letter)!
                     letter.inTransit = true
@@ -224,10 +227,6 @@ class GameManager{
         else{
             rearrangeLetters(letter)
         }
-    }
-
-    func canAddLetter() -> Bool{
-        return word.letters.count < word.maxSize
     }
 
     func rearrangeLetters(letter: Letter){
