@@ -10,7 +10,7 @@ import Foundation
 import Accounts
 import Social
 
-class postTweet{
+class PostTweet{
 
     class func tweetWithPhoto(photo: String, status: String){
         postToTwitter(photo, status: status, url: "update_with_media.json")
@@ -40,6 +40,9 @@ class postTweet{
                     
                     if countElements(photo) > 0 {
                         var appIcon = UIImage(named: photo)
+                        
+                        println(appIcon.description)
+                        
                         var iconData = UIImagePNGRepresentation(appIcon)
                         posts.addMultipartData(iconData, withName: "media[]", type: "multipart/png", filename: "Icon")
                     }

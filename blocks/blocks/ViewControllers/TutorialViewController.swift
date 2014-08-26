@@ -13,7 +13,7 @@ class TutorialViewController: UIViewController, UIPageViewControllerDataSource{
 
     var close: UIButton = UIButton()
     var pageViewController : UIPageViewController?
-    var pageImages : Array<String> = ["a", "b", "c"]
+    var pageImages : Array<String> = ["tutorial1", "tutorial2", "tutorial3"]
     var currentIndex : Int = 0
 
     lazy var dimmingView :UIView = {
@@ -106,7 +106,6 @@ class TutorialViewController: UIViewController, UIPageViewControllerDataSource{
         pageContentViewController.imageName = self.pageImages[index]
         pageContentViewController.pageIndex = index
         self.currentIndex = index
-        pageContentViewController.viewSetup()
 
         return pageContentViewController
     }

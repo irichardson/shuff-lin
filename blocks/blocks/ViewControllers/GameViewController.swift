@@ -63,7 +63,7 @@ class GameViewController: UIViewController, MFMailComposeViewControllerDelegate 
     func sendTweet(){
         var alert = UIAlertController(title: "Twitter", message: "Posting your highscore to Twitter", preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: {(alert :UIAlertAction!) in
-            postTweet.tweetWithPhoto("twitterIcon", status: "My highest score in Shuff-Lin is - and my longest word is -")
+            PostTweet.tweetWithPhoto("twitterIcon", status: "My highest score in Shuff-Lin is - and my longest word is -")
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default, handler: nil))
         self.presentViewController(alert, animated: true, completion: nil)
@@ -72,7 +72,7 @@ class GameViewController: UIViewController, MFMailComposeViewControllerDelegate 
     func sendFacebook(){
         var alert = UIAlertController(title: "Facebook", message: "Posting your highscore to Facebook", preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: {(alert :UIAlertAction!) in
-            postFacebook.postToFacebookWithImage("Testicles 1 2", appID:"354809358003876", photo:"twitterIcon")
+            PostFacebook.postToFacebookWithImage("Testicles 1 2", appID:"354809358003876", photo:"twitterIcon")
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default, handler: nil))
         self.presentViewController(alert, animated: true, completion: nil)

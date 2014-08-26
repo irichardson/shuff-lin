@@ -18,6 +18,7 @@
 		3C57E70319AC8CF000E99574 /* TutorialContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C57E70019AC8CF000E99574 /* TutorialContentViewController.swift */; };
 		3C57E70419AC8CF000E99574 /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C57E70119AC8CF000E99574 /* TutorialViewController.swift */; };
 		3C57E70619AC8CFA00E99574 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C57E70519AC8CFA00E99574 /* GameScene.swift */; };
+		3C57E70819ACAA1400E99574 /* ImageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C57E70719ACAA1400E99574 /* ImageHelper.swift */; };
 		3C58F7F6199BF13E000A7B90 /* ScoreParticles.sks in Resources */ = {isa = PBXBuildFile; fileRef = 3C58F7F4199BF13E000A7B90 /* ScoreParticles.sks */; };
 		3C58F7F7199BF13E000A7B90 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C58F7F5199BF13E000A7B90 /* spark.png */; };
 		3C6950A51950D1870051CC5E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6950A41950D1870051CC5E /* AppDelegate.swift */; };
@@ -38,8 +39,8 @@
 		3CFCB92F19A762AA00F817E7 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CFCB86319A749E200F817E7 /* Accounts.framework */; };
 		3CFCB96C19A76E2600F817E7 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CFCB96B19A76E2600F817E7 /* Social.framework */; };
 		3CFCB96E19A7875500F817E7 /* twitterIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3CFCB96D19A7875500F817E7 /* twitterIcon.png */; };
-		3CFCB97019A7A01B00F817E7 /* postTweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFCB96F19A7A01B00F817E7 /* postTweet.swift */; };
-		3CFCB97219A7C06C00F817E7 /* postFacebook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFCB97119A7C06C00F817E7 /* postFacebook.swift */; };
+		3CFCB97019A7A01B00F817E7 /* PostTweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFCB96F19A7A01B00F817E7 /* PostTweet.swift */; };
+		3CFCB97219A7C06C00F817E7 /* PostFacebook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFCB97119A7C06C00F817E7 /* PostFacebook.swift */; };
 		3CFCB97419A814AA00F817E7 /* EarlyRiser.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3CFCB97319A814AA00F817E7 /* EarlyRiser.mp3 */; };
 		3CFCB97619A8150900F817E7 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CFCB97519A8150900F817E7 /* AVFoundation.framework */; };
 		3CFCB97819A8156C00F817E7 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFCB97719A8156C00F817E7 /* AudioManager.swift */; };
@@ -73,6 +74,7 @@
 		3C57E70019AC8CF000E99574 /* TutorialContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialContentViewController.swift; sourceTree = "<group>"; };
 		3C57E70119AC8CF000E99574 /* TutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
 		3C57E70519AC8CFA00E99574 /* GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		3C57E70719ACAA1400E99574 /* ImageHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageHelper.swift; sourceTree = "<group>"; };
 		3C58F7F4199BF13E000A7B90 /* ScoreParticles.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ScoreParticles.sks; sourceTree = "<group>"; };
 		3C58F7F5199BF13E000A7B90 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
 		3C69509F1950D1870051CC5E /* SHUFF-LIN.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SHUFF-LIN.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -97,8 +99,8 @@
 		3CFCB86319A749E200F817E7 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		3CFCB96B19A76E2600F817E7 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		3CFCB96D19A7875500F817E7 /* twitterIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = twitterIcon.png; sourceTree = "<group>"; };
-		3CFCB96F19A7A01B00F817E7 /* postTweet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = postTweet.swift; sourceTree = "<group>"; };
-		3CFCB97119A7C06C00F817E7 /* postFacebook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = postFacebook.swift; sourceTree = "<group>"; };
+		3CFCB96F19A7A01B00F817E7 /* PostTweet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostTweet.swift; sourceTree = "<group>"; };
+		3CFCB97119A7C06C00F817E7 /* PostFacebook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostFacebook.swift; sourceTree = "<group>"; };
 		3CFCB97319A814AA00F817E7 /* EarlyRiser.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = EarlyRiser.mp3; sourceTree = "<group>"; };
 		3CFCB97519A8150900F817E7 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		3CFCB97719A8156C00F817E7 /* AudioManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
@@ -240,8 +242,9 @@
 			isa = PBXGroup;
 			children = (
 				3CE6EB8D1981BC9E007868FE /* UIColourFromRGB.swift */,
-				3CFCB96F19A7A01B00F817E7 /* postTweet.swift */,
-				3CFCB97119A7C06C00F817E7 /* postFacebook.swift */,
+				3CFCB96F19A7A01B00F817E7 /* PostTweet.swift */,
+				3CFCB97119A7C06C00F817E7 /* PostFacebook.swift */,
+				3C57E70719ACAA1400E99574 /* ImageHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -392,15 +395,16 @@
 				3C07E13B1989728D0045CF43 /* HomeScene.swift in Sources */,
 				3C57E70219AC8CF000E99574 /* GameViewController.swift in Sources */,
 				3CF17B5D1958A7D10029CC26 /* GameManager.swift in Sources */,
-				3CFCB97019A7A01B00F817E7 /* postTweet.swift in Sources */,
+				3CFCB97019A7A01B00F817E7 /* PostTweet.swift in Sources */,
 				3C57E70419AC8CF000E99574 /* TutorialViewController.swift in Sources */,
 				3CF17B5B195502320029CC26 /* Word.swift in Sources */,
 				3C57E70319AC8CF000E99574 /* TutorialContentViewController.swift in Sources */,
 				3C6950A51950D1870051CC5E /* AppDelegate.swift in Sources */,
-				3CFCB97219A7C06C00F817E7 /* postFacebook.swift in Sources */,
+				3CFCB97219A7C06C00F817E7 /* PostFacebook.swift in Sources */,
 				3CE6EB8E1981BC9E007868FE /* UIColourFromRGB.swift in Sources */,
 				3CF17B581954D1DF0029CC26 /* Letter.swift in Sources */,
 				3CFCB97819A8156C00F817E7 /* AudioManager.swift in Sources */,
+				3C57E70819ACAA1400E99574 /* ImageHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

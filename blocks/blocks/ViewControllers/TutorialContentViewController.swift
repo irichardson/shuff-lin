@@ -10,10 +10,11 @@ import Foundation
 
 class TutorialContentViewController: UIPageViewController{
 
-    @IBOutlet var image : UIImageView!
+    var imageView : UIImageView = UIImageView()
     
     var pageIndex : Int = 0
     var imageName : String = ""
+    var viewSize : CGSize = CGSize(width: 280, height: 405)
 
     override func viewWillLayoutSubviews() {
     }
@@ -24,16 +25,12 @@ class TutorialContentViewController: UIPageViewController{
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor.blueColor()
-    }
-    
-    
-    func viewSetup(){
-        self.image = UIImageView()
-        self.image = UIImageView(image: UIImage(contentsOfFile: imageName))
         
-        self.image.frame = CGRectMake(self.view.frame.width/2, self.view.frame.height/2, self.image.frame.width, self.image.frame.height)
-        self.view.addSubview(self.image)
-    }
+        var image = UIImage(named: self.imageName)        
+        image = ImageHelper.imageScaledToSize(image, newSize: viewSize)
 
+        self.imageView = UIImageView(frame: CGRectMake(0, 0, viewSize.width, viewSize.height))
+        self.imageView.image = image
+        self.view.addSubview(self.imageView)
+    }
 }

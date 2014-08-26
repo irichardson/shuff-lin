@@ -10,7 +10,7 @@ import Foundation
 import Accounts
 import Social
 
-class postFacebook{
+class PostFacebook{
     
     class func postToFacebook(message: String, appID: String){
         postOnFacebook(message, appID:appID, photo:"", url: "feed")
