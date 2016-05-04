@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "6392BC38964734483BFC94308997037464E98388",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "6392BC38964734483BFC94308997037464E98388" : 0,
+    "72E8AEF8201D0465EAD5BE5475E77330EA7EC0CD" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "E6097358-3934-4981-A112-5427E8E187F2",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "6392BC38964734483BFC94308997037464E98388" : "shuff-lin",
+    "72E8AEF8201D0465EAD5BE5475E77330EA7EC0CD" : "Swifter"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "blocks",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "blocks\/blocks.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:irichardson\/shuff-lin.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "6392BC38964734483BFC94308997037464E98388"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/mattdonnelly\/Swifter.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "72E8AEF8201D0465EAD5BE5475E77330EA7EC0CD"
+    }
+  ]
+}

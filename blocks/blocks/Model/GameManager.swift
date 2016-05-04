@@ -43,9 +43,9 @@ class GameManager{
     func loadAlphabet(){
         let path = NSBundle.mainBundle().pathForResource("AlphabetFrequency", ofType: "plist")
         let dict = NSDictionary(contentsOfFile: path!)
-        for (letter : AnyObject, number : AnyObject) in dict {
-            for var index=0; index < Int(number as NSNumber); index++ {
-                alphabet.append(letter as NSString)
+        for (letter, number): (AnyObject, AnyObject) in dict! {
+            for _ in 0 ..< Int(number as! NSNumber) {
+                alphabet.append(letter as! String)
             }
         }
     }
@@ -53,18 +53,23 @@ class GameManager{
     func loadScoreDictionary(){
         let path = NSBundle.mainBundle().pathForResource("scoring", ofType: "plist")
         let dict = NSDictionary(contentsOfFile: path!)
-        for (letter : AnyObject, number : AnyObject) in dict {
-            var score = Int(number as NSNumber)
-            scoringDictionary[letter as String] = score
+        for (letter, number): (AnyObject, AnyObject) in dict! {
+            let score = Int(number as! NSNumber)
+            scoringDictionary[letter as! String] = score
         }
     }
     
     func loadWordDictionary(){
-        let path = NSBundle.mainBundle().pathForResource("dictionary", ofType: "txt")
-        var possibleContent = String.stringWithContentsOfFile(path!, encoding: NSUTF8StringEncoding, error: nil)
-        if let content = possibleContent {
-            dictionary = content.componentsSeparatedByString("\n")
-            self.max = dictionary.count-1
+        if let filepath = NSBundle.mainBundle().pathForResource("dictionary", ofType: "txt") {
+            do {
+                let content = try NSString(contentsOfFile: filepath, usedEncoding: nil) as String
+                dictionary = content.componentsSeparatedByString("\n")
+                self.max = dictionary.count-1
+            } catch {
+                // contents could not be loaded
+            }
+        } else {
+            // example.txt not found!
         }
     }
     
@@ -76,8 +81,8 @@ class GameManager{
     
     func binarySearch(key: String, imin: Int, imax: Int) {
         //find the value at the middle index
-        var midIndex : Double = round(Double((imin + imax) / 2))
-        var midNumber = dictionary[Int(midIndex)]
+        let midIndex : Double = round(Double((imin + imax) / 2))
+        let midNumber = dictionary[Int(midIndex)]
 
         //use recursion to reduce the possible search range
         if(imax < imin){
@@ -98,17 +103,17 @@ class GameManager{
     func addLetters() -> Letter{
         let randomNumber = arc4random_uniform(1000)
         let letterPosition = arc4random_uniform(5)
-        var xPosition:Int = word.generatationPosition[letterPosition.hashValue]
+        let xPosition:Int = word.generatationPosition[letterPosition.hashValue]
         
         let letter = Letter(letter: alphabet[Int(randomNumber)], atPosition: CGPointMake(CGFloat(xPosition), startingY))
-        var distance = UIScreen.mainScreen().bounds.height-letter.position.y
+        let distance = UIScreen.mainScreen().bounds.height-letter.position.y
         letter.moveUp(Double(distance), speedForScene:Double(speedOfLetters))
         letter.zPosition = 1
         return letter
     }
     
     func letterFlicked(letter: Letter){
-        self.word.letters.removeAtIndex(find(self.word.letters, letter)!)
+        self.word.letters.removeAtIndex(self.word.letters.indexOf(letter)!)
         word.arrangeLetters()
         if(score >= 3){
             score -= 3
@@ -116,10 +121,10 @@ class GameManager{
     }
     
     func newHighScore() -> Bool{
-        var prefs = NSUserDefaults.standardUserDefaults()
+        let prefs = NSUserDefaults.standardUserDefaults()
         var scores : [Score] = []
-        if var data: AnyObject = prefs.objectForKey("highScores") {
-            scores = NSKeyedUnarchiver.unarchiveObjectWithData(data as NSData) as [Score]
+        if let data: AnyObject = prefs.objectForKey("highScores") {
+            scores = NSKeyedUnarchiver.unarchiveObjectWithData(data as! NSData) as! [Score]
             if isScoreBiggerThanCurrentScores(scores){
                 return true
             }
@@ -144,14 +149,14 @@ class GameManager{
     
     func saveScore(){
         if(score>0){
-            var newScore = Score()
+            let newScore = Score()
             newScore.word = mostComplexWord
             newScore.score = score
         
             var scores :[Score] = []
-            var prefs = NSUserDefaults.standardUserDefaults()
-            if var data: AnyObject = prefs.objectForKey("highScores") {
-                scores = NSKeyedUnarchiver.unarchiveObjectWithData(data as NSData) as [Score]
+            let prefs = NSUserDefaults.standardUserDefaults()
+            if let data: AnyObject = prefs.objectForKey("highScores") {
+                scores = NSKeyedUnarchiver.unarchiveObjectWithData(data as! NSData) as! [Score]
                 if(scores.count == 10){
                     scores.removeLast()
                 }
@@ -162,17 +167,17 @@ class GameManager{
             }
             
             if scores.count > 1 {
-                scores = sorted(scores) {$0.score > $1.score}
+                scores = scores.sort{$0.score > $1.score}
             }
             
-            var dataArray = NSKeyedArchiver.archivedDataWithRootObject(scores)
+            let dataArray = NSKeyedArchiver.archivedDataWithRootObject(scores)
             prefs.setObject(dataArray, forKey: "highScores")
             prefs.synchronize()
         }
     }
     
     func letterOnWordShelf(letter: Letter) -> Bool{
-        if find(word.letters, letter) != nil{
+        if word.letters.indexOf(letter) != nil{
             return true
         }
         return false
@@ -214,13 +219,13 @@ class GameManager{
             if(canAddLetter()){
                 if !letter.inTransit{
                     word.letters.append(letter)
-                    letter.positionInWord = find(word.letters, letter)!
+                    letter.positionInWord = word.letters.indexOf(letter)!
                     letter.inTransit = true
                     letter.moveToPosition(CGFloat(word.getStartingPosition()))
                 }
             }
             else{
-                var distance = UIScreen.mainScreen().bounds.height - letter.position.y
+                let distance = UIScreen.mainScreen().bounds.height - letter.position.y
                 letter.moveUp(Double(distance), speedForScene:Double(speedOfLetters))
             }
         }

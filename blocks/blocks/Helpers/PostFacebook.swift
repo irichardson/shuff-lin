@@ -21,42 +21,42 @@ class PostFacebook{
     }
     
     class func postOnFacebook(message: String, appID: String, photo: String, url: String){
-        var accountStore = ACAccountStore()
-        var accountType = accountStore.accountTypeWithAccountTypeIdentifier(ACAccountTypeIdentifierFacebook)
+        let accountStore = ACAccountStore()
+        let accountType = accountStore.accountTypeWithAccountTypeIdentifier(ACAccountTypeIdentifierFacebook)
         
-        var optionsForPosting = [ACFacebookAppIdKey:appID, ACFacebookPermissionsKey: ["email"], ACFacebookAudienceKey: ACFacebookAudienceFriends]
+        let optionsForPosting = [ACFacebookAppIdKey:appID, ACFacebookPermissionsKey: ["email"], ACFacebookAudienceKey: ACFacebookAudienceFriends]
 
-        accountStore.requestAccessToAccountsWithType(accountType, options: optionsForPosting) {
+        accountStore.requestAccessToAccountsWithType(accountType, options: optionsForPosting as [NSObject : AnyObject]) {
             granted, error in
             if granted {
                     
-                var options = [ACFacebookAppIdKey:appID, ACFacebookPermissionsKey: ["publish_actions"], ACFacebookAudienceKey: ACFacebookAudienceFriends]
+                let options = [ACFacebookAppIdKey:appID, ACFacebookPermissionsKey: ["publish_actions"], ACFacebookAudienceKey: ACFacebookAudienceFriends]
 
-                accountStore.requestAccessToAccountsWithType(accountType, options: options) {
+                accountStore.requestAccessToAccountsWithType(accountType, options: options as [NSObject : AnyObject]) {
                     granted, error in
                     if granted {
                         var accountsArray = accountStore.accountsWithAccountType(accountType)
                         
                             if accountsArray.count > 0 {
-                            var facebookAccount = accountsArray[0] as ACAccount
+                            let facebookAccount = accountsArray[0] as! ACAccount
                             
                             var parameters = Dictionary<String, AnyObject>()
                             parameters["access_token"] = facebookAccount.credential.oauthToken
                             parameters["message"] = message
                             
-                            var feedURL = NSURL(string: "https://graph.facebook.com/me/\(url)")
+                            let feedURL = NSURL(string: "https://graph.facebook.com/me/\(url)")
                             let posts = SLRequest(forServiceType: SLServiceTypeFacebook, requestMethod: SLRequestMethod.POST, URL: feedURL, parameters: parameters)
                                 
-                            if countElements(photo) > 0{
-                                var appIcon = UIImage(named: photo)
-                                var iconData = UIImagePNGRepresentation(appIcon)
+                            if photo.characters.count > 0{
+                                let appIcon = UIImage(named: photo)
+                                let iconData = UIImagePNGRepresentation(appIcon!)
                                 posts.addMultipartData(iconData, withName: "picture", type: "image/png", filename: "Icon")
                             }
                 
                             let handler: SLRequestHandler =  { (response, urlResponse, error) in
-                                println(response.description)
-                                println(error)
-                                println(urlResponse.statusCode)
+                                print(response.description)
+                                print(error)
+                                print(urlResponse.statusCode)
                             }
                 
                             posts.performRequestWithHandler(handler)
@@ -64,13 +64,13 @@ class PostFacebook{
                     }
                     else{
                         NSNotificationCenter.defaultCenter().postNotificationName("facebookFailed", object: nil)
-                        println(error.localizedDescription)
+                        print(error.localizedDescription)
                     }
                 }
             }
             else{
                 NSNotificationCenter.defaultCenter().postNotificationName("facebookFailed", object: nil)
-                println(error.localizedDescription)
+                print(error.localizedDescription, terminator: "")
             }
         }
     }

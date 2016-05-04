@@ -14,10 +14,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
 
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: NSDictionary?) -> Bool {
+    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
 
-        var prefs = NSUserDefaults.standardUserDefaults()
+        let prefs = NSUserDefaults.standardUserDefaults()
         let music = prefs.boolForKey("music")
         let firstTime = prefs.boolForKey("firstTime")
         
@@ -44,9 +44,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidEnterBackground(application: UIApplication) {
-        var prefs = NSUserDefaults.standardUserDefaults()
+        let prefs = NSUserDefaults.standardUserDefaults()
         let music = prefs.boolForKey("music")
-        println("music \(music)")
+        print("music \(music)", terminator: "")
         
         if music{
             //Play music
@@ -57,9 +57,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillEnterForeground(application: UIApplication) {
-        var prefs = NSUserDefaults.standardUserDefaults()
+        let prefs = NSUserDefaults.standardUserDefaults()
         let music = prefs.boolForKey("music")
-        println("music \(music)")
+        print("music \(music)", terminator: "")
         
         if music{
             //Play music

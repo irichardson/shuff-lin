@@ -34,11 +34,11 @@ class TutorialViewController: UIViewController, UIPageViewControllerDataSource{
         
         self.view.addSubview(dimmingView)
         
-        close = UIButton.buttonWithType(UIButtonType.System) as UIButton
+        close = UIButton(type:UIButtonType.System) as UIButton
         close.frame = CGRectMake(self.view.frame.width - 25, 13, 25, 25)
         close.backgroundColor = UIColor.greenColor()
         close.setTitle("X", forState: UIControlState.Normal)
-        close.addTarget(self, action: "close:", forControlEvents: UIControlEvents.TouchUpInside)
+        close.addTarget(self, action: #selector(TutorialViewController.close(_:)), forControlEvents: UIControlEvents.TouchUpInside)
 
         self.view.addSubview(close)
         
@@ -47,12 +47,12 @@ class TutorialViewController: UIViewController, UIPageViewControllerDataSource{
         
         let startingViewController: TutorialContentViewController = self.viewControllerAtIndex(0)!
         let viewControllers: NSArray = [startingViewController]
-        self.pageViewController!.setViewControllers(viewControllers, direction: .Forward, animated: false, completion: nil)
+        self.pageViewController!.setViewControllers(viewControllers as? [UIViewController], direction: .Forward, animated: false, completion: nil)
         self.pageViewController!.view.frame = CGRectMake(25, 25, self.view.frame.size.width-50, self.view.frame.size.height-50);
         
         self.pageViewController!.view.backgroundColor = UIColor.clearColor()
         
-        self.addChildViewController(self.pageViewController)
+        self.addChildViewController(self.pageViewController!)
         self.view.addSubview(self.pageViewController!.view)
         self.pageViewController!.didMoveToParentViewController(self)
     }
@@ -71,23 +71,23 @@ class TutorialViewController: UIViewController, UIPageViewControllerDataSource{
         })
     }
         
-    func pageViewController(pageViewController: UIPageViewController!, viewControllerBeforeViewController viewController: UIViewController!) -> UIViewController!
+    func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController?
     {
-        var index = (viewController as TutorialContentViewController).pageIndex
+        var index = (viewController as! TutorialContentViewController).pageIndex
         if (index == 0) || (index == NSNotFound) {
             return nil
         }
-        index--
+        index -= 1
         return self.viewControllerAtIndex(index)
     }
     
-    func pageViewController(pageViewController: UIPageViewController!, viewControllerAfterViewController viewController: UIViewController!) -> UIViewController!
+    func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController?
     {
-        var index = (viewController as TutorialContentViewController).pageIndex
+        var index = (viewController as! TutorialContentViewController).pageIndex
         if index == NSNotFound {
             return nil
         }
-        index++
+        index += 1
         if (index == self.pageImages.count) {
             return nil
         }

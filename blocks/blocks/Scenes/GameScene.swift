@@ -62,12 +62,12 @@ class GameScene: SKScene{
             })
         })
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "wordFound", name:"wordFound", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(GameScene.wordFound), name:"wordFound", object: nil)
         buildWorld()
     }
     
-    override func willMoveFromView(view: SKView!) {
-        self.view.removeGestureRecognizer(swipeRecognizer)
+    override func willMoveFromView(view: SKView) {
+        self.view!.removeGestureRecognizer(swipeRecognizer)
     }
     
     //Setup scene
@@ -86,13 +86,13 @@ class GameScene: SKScene{
         timeRemainingLabel.zPosition = 11
         self.addChild(timeRemainingLabel)
         
-        back.setTouchUpInsideTarget(self, action: Selector("backToMenu"))
+        back.setTouchUpInsideTarget(self, action: #selector(GameScene.backToMenu))
         back.size = CGSizeMake(30, 30)
         back.position = CGPoint(x:0, y:0)
         back.zPosition = 11
         topBar.addChild(back)
         
-        submit.setTouchUpInsideTarget(self, action: Selector("submitWord"))
+        submit.setTouchUpInsideTarget(self, action: #selector(GameScene.submitWord))
         submit.size = CGSizeMake(self.frame.width, shelf.frame.height)
         submit.position = CGPointMake(self.frame.width/2, submit.frame.height/2)
         submit.zPosition = 4
@@ -157,7 +157,7 @@ class GameScene: SKScene{
             startTime = currentTime
             countDown = false
         }
-        var gameCountDown = gameManager.time - Int(currentTime - startTime)
+        let gameCountDown = gameManager.time - Int(currentTime - startTime)
         if(gameCountDown>(-1)){  //if counting down to 0 show counter
             timeRemainingLabel.text = "\(gameCountDown)"
         }
@@ -172,14 +172,14 @@ class GameScene: SKScene{
             startTime = currentTime
             startGamePlay = false
         }
-        var countDownInt = 4 - Int(currentTime - startTime)
+        let countDownInt = 4 - Int(currentTime - startTime)
         if(countDownInt>0){  //if counting down to 0 show counter
             countDownLabel.text = "\(countDownInt)"
         }
         else { //if not show message, dismiss, whatever you need to do.
             countDownLabel.text = "GO!"
             gameHasStarted = true
-            NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("removeLabel"), userInfo: nil, repeats: false)
+            NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(GameScene.removeLabel), userInfo: nil, repeats: false)
         }
     }
     
@@ -197,11 +197,11 @@ class GameScene: SKScene{
         gameOverOverlay.zPosition = 5
         self.addChild(gameOverOverlay)
         
-        reset.setTouchUpInsideTarget(self, action: Selector("gameReset"))
+        reset.setTouchUpInsideTarget(self, action: #selector(GameScene.gameReset))
         reset.position = CGPointMake(0, -100)
         gameOverOverlay.addChild(reset)
                 
-        home.setTouchUpInsideTarget(self, action: Selector("goHome"))
+        home.setTouchUpInsideTarget(self, action: #selector(GameScene.goHome))
         home.position = CGPointMake(0, -50)
         gameOverOverlay.addChild(home)
         
@@ -213,12 +213,12 @@ class GameScene: SKScene{
         
         timeRemainingLabel.text = "60"
         if gameManager.newHighScore(){
-            var star = SKSpriteNode(imageNamed: "star")
+            let star = SKSpriteNode(imageNamed: "star")
             star.position = CGPointMake(-85, 85)
             star.zPosition = 3
             gameOverOverlay.addChild(star)
             
-            var newHighScoreLabel = SKSpriteNode(imageNamed: "newHighscore")
+            let newHighScoreLabel = SKSpriteNode(imageNamed: "newHighscore")
             newHighScoreLabel.position = CGPointMake(20, 85)
             newHighScoreLabel.zPosition = 3
             gameOverOverlay.addChild(newHighScoreLabel)
@@ -245,11 +245,11 @@ class GameScene: SKScene{
     func goHome(){
         self.removeAllChildren()
         NSNotificationCenter.defaultCenter().removeObserver(self, name:"wordFound", object: nil)
-        var reveal = SKTransition.crossFadeWithDuration(0.5)
-        var scene = HomeScene.sceneWithSize(self.view.bounds.size)
+        let reveal = SKTransition.crossFadeWithDuration(0.5)
+        let scene = HomeScene(size:self.view!.bounds.size)
         scene.scaleMode = SKSceneScaleMode.AspectFill
         gameManager.reset()
-        self.view.presentScene(scene, transition: reveal)
+        self.view!.presentScene(scene, transition: reveal)
     }
     
     //Remove starting labels and start adding letters
@@ -257,10 +257,10 @@ class GameScene: SKScene{
         gameStartsLabel.removeFromParent()
         countDownLabel.removeFromParent()
         timerRemaining = true
-        lettersTimer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: Selector("addLetters"), userInfo: nil, repeats: true)
-        swipeRecognizer = UISwipeGestureRecognizer(target: self, action: Selector("move:"))
+        lettersTimer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: #selector(GameScene.addLetters), userInfo: nil, repeats: true)
+        swipeRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(GameScene.move(_:)))
         swipeRecognizer.direction = UISwipeGestureRecognizerDirection.Up
-        self.view.addGestureRecognizer(swipeRecognizer)
+        self.view!.addGestureRecognizer(swipeRecognizer)
     }
     
     //If a letter is flicked while on the shelf it is removed
@@ -295,11 +295,11 @@ class GameScene: SKScene{
     
     //Add a letter to move up the screen
     func addLetters(){
-        var letter = gameManager.addLetters()        
+        let letter = gameManager.addLetters()        
         self.addChild(letter)
     }
     
-    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         /* Called when a touch begins */
         for touch: AnyObject in touches {
             let location = touch.locationInNode(self)
@@ -308,9 +308,9 @@ class GameScene: SKScene{
     }
  
     func selectNodeForTouch(point: CGPoint){
-        var node = self.nodeAtPoint(point)
+        let node = self.nodeAtPoint(point)
         if node is Letter{
-            let letter = node as Letter
+            let letter = node as! Letter
             if !gameManager.letterOnWordShelf(letter){
                 gameManager.word.bringLetterToFront(letter)
             }
@@ -321,24 +321,24 @@ class GameScene: SKScene{
         }
     }
     
-    override func touchesMoved(touches: NSSet, withEvent event: UIEvent) {
+    override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
         for touch: AnyObject in touches {
             let location = touch.locationInNode(self)
-            var node = self.nodeAtPoint(location)
+            let node = self.nodeAtPoint(location)
             if node is Letter{
-                let letter = node as Letter
+                let letter = node as! Letter
                 letter.position = CGPointMake(location.x, location.y)
                 letter.zPosition = 4
             }
         }
     }
  
-    override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
+    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         for touch: AnyObject in touches {
             let location = touch.locationInNode(self)
-            var node = self.nodeAtPoint(location)
+            let node = self.nodeAtPoint(location)
             if node is Letter{
-                let letter = node as Letter                
+                let letter = node as! Letter                
                 gameManager.addLetterToWord(letter)
                 letterBeingSwiped = SKSpriteNode()
             }
@@ -346,9 +346,9 @@ class GameScene: SKScene{
     }
     
     func backToMenu(){
-        var reveal = SKTransition.crossFadeWithDuration(0.5)
-        var scene = HomeScene.sceneWithSize(self.view.bounds.size)
+        let reveal = SKTransition.crossFadeWithDuration(0.5)
+        let scene = HomeScene(size: self.view!.bounds.size)
         scene.scaleMode = SKSceneScaleMode.AspectFill
-        self.view.presentScene(scene, transition: reveal)
+        self.view!.presentScene(scene, transition: reveal)
     }
 }

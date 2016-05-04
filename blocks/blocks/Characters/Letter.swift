@@ -56,8 +56,8 @@ class Letter : SKSpriteNode {
         }
         yAxis = self.position.y - topOffset
         
-        var hypothenus = sqrt((xAxis * xAxis) + (yAxis * yAxis))
-        var time = Double(hypothenus)*speedForShelf
+        let hypothenus = sqrt((xAxis * xAxis) + (yAxis * yAxis))
+        let time = Double(hypothenus)*speedForShelf
         
         let moveAction = SKAction.moveTo(CGPointMake(xPosition, bottomOffset), duration: NSTimeInterval(time))
         let scaleAction = SKAction.scaleTo(0.7, duration: NSTimeInterval(time))
@@ -66,7 +66,7 @@ class Letter : SKSpriteNode {
     }
     
     func moveUp(distance: Double, speedForScene: Double){
-        var time = distance * speedForScene
+        let time = distance * speedForScene
         let action = SKAction.moveTo(CGPointMake(self.position.x, UIScreen.mainScreen().bounds.height+self.frame.size.height), duration: time)
         self.runAction(SKAction.repeatActionForever(action))
     }

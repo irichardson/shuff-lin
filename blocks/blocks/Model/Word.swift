@@ -24,9 +24,9 @@ class Word {
     
     func arrangeLetters(){
         for a: Letter in letters{
-            var pos = startingPoints[find(letters, a)!]
+            let pos = startingPoints[letters.indexOf(a)!]
             a.moveToPosition(CGFloat(pos))
-            a.positionInWord = find(letters, a)!
+            a.positionInWord = letters.indexOf(a)!
         }
     }
     
@@ -39,14 +39,14 @@ class Word {
     func removeAllLetters(){
         for letter: Letter in letters{
             letter.submitted()
-            self.letters.removeAtIndex(find(self.letters, letter)!)
+            self.letters.removeAtIndex(self.letters.indexOf(letter)!)
         }
     }
     
     func shuffle(){
-        for (var i = 0; i < letters.count; i++) {
-            var j = arc4random_uniform(UInt32(letters.count))
-            var a = letters[Int(j)]
+        for i in 0 ..< letters.count {
+            let j = arc4random_uniform(UInt32(letters.count))
+            let a = letters[Int(j)]
             letters[Int(j)] = letters[i]
             letters[i] = a
         }

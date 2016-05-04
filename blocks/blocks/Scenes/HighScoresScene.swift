@@ -7,6 +7,7 @@
 //
 
 import SpriteKit
+import UIKit
 
 class HighScoresScene: SKScene {
 
@@ -30,12 +31,12 @@ class HighScoresScene: SKScene {
     func buildWorld(){
         self.backgroundColor = UIColor.whiteColor()
         
-        var topBar = SKSpriteNode(imageNamed: "highScoreTopBar")
+        let topBar = SKSpriteNode(imageNamed: "highScoreTopBar")
         topBar.position = CGPointMake(self.frame.width/2, self.frame.height-topBar.frame.height/2)
         topBar.zPosition = 10
         
         back = SKButton(imageNamed: "homeIcon")
-        back.setTouchUpInsideTarget(self, action: Selector("backToMenu"))
+        back.setTouchUpInsideTarget(self, action:#selector(HighScoresScene.backToMenu))
         back.size = CGSizeMake(30, 30)
         back.position = CGPointMake(-130, 0)
         topBar.addChild(back)
@@ -44,9 +45,9 @@ class HighScoresScene: SKScene {
         
         sceneView = SKView(frame: CGRectMake(0, self.frame.height-topBar.frame.height, self.frame.width, self.frame.height))
 
-        var prefs = NSUserDefaults.standardUserDefaults()
-        if var data: AnyObject = prefs.objectForKey("highScores") {
-            scores = NSKeyedUnarchiver.unarchiveObjectWithData(data as NSData) as [Score]
+        let prefs = NSUserDefaults.standardUserDefaults()
+        if let data: AnyObject = prefs.objectForKey("highScores") {
+            scores = NSKeyedUnarchiver.unarchiveObjectWithData(data as! NSData) as! [Score]
         }
 
         var imageSize:CGFloat = 45.0
@@ -58,14 +59,14 @@ class HighScoresScene: SKScene {
         }
         
         for index in 1...10{
-            var number = SKSpriteNode(imageNamed: "\(index)")
+            let number = SKSpriteNode(imageNamed: "\(index)")
             number.name = "HighScores"
             number.size = CGSizeMake(imageSize, imageSize)
             number.position = CGPointMake(number.frame.width, CGFloat(yPositionNumber))
             self.addChild(number)
             
             if(scores.count >= index){
-                var scoreLabel = SKLabelNode(fontNamed:"Chalkduster")
+                let scoreLabel = SKLabelNode(fontNamed:"Chalkduster")
                 scoreLabel.fontSize = 30;
                 scoreLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Left
                 scoreLabel.fontColor = UIColor.blackColor()
@@ -81,9 +82,9 @@ class HighScoresScene: SKScene {
     }
     
     func backToMenu(){
-        var reveal = SKTransition.crossFadeWithDuration(0.5)
-        var scene = HomeScene.sceneWithSize(self.view.bounds.size)
+        let reveal = SKTransition.crossFadeWithDuration(0.5)
+        let scene = HomeScene(size:self.view!.bounds.size)
         scene.scaleMode = SKSceneScaleMode.AspectFill
-        self.view.presentScene(scene, transition: reveal)
+        self.view!.presentScene(scene, transition: reveal)
     }
 }

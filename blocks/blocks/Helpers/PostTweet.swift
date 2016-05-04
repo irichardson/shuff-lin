@@ -21,37 +21,37 @@ class PostTweet{
     }
     
     class func postToTwitter(photo: String, status: String, url: String){
-        var accountStore = ACAccountStore()
-        var accountType = accountStore.accountTypeWithAccountTypeIdentifier(ACAccountTypeIdentifierTwitter)
+        let accountStore = ACAccountStore()
+        let accountType = accountStore.accountTypeWithAccountTypeIdentifier(ACAccountTypeIdentifierTwitter)
 
         accountStore.requestAccessToAccountsWithType(accountType, options: nil) {
             granted, error in
             if granted {
                 var accountsArray = accountStore.accountsWithAccountType(accountType)
                 if accountsArray.count > 0 {
-                    var twitterAccount = accountsArray[0] as ACAccount
+                    let twitterAccount = accountsArray[0] as! ACAccount
                     
-                    let requestAPI = NSURL.URLWithString("https://api.twitter.com/1.1/statuses/\(url)")
+                    let requestAPI = NSURL(string:"https://api.twitter.com/1.1/statuses/\(url)")
                     
                     var parameters = Dictionary<String, AnyObject>()
                     parameters["status"] = status
 
                     let posts = SLRequest(forServiceType: SLServiceTypeTwitter, requestMethod: SLRequestMethod.POST, URL: requestAPI, parameters: parameters)
                     
-                    if countElements(photo) > 0 {
-                        var appIcon = UIImage(named: photo)
+                    if photo.characters.count > 0 {
+                        let appIcon = UIImage(named: photo)
                         
-                        println(appIcon.description)
+                        print(appIcon!.description)
                         
-                        var iconData = UIImagePNGRepresentation(appIcon)
+                        let iconData = UIImagePNGRepresentation(appIcon!)
                         posts.addMultipartData(iconData, withName: "media[]", type: "multipart/png", filename: "Icon")
                     }
                     
                     posts.account = twitterAccount
                     
                     let handler: SLRequestHandler =  { (response, urlResponse, error) in
-                        println(response.description)
-                        println(urlResponse.statusCode)
+                        print(response.description, terminator: "")
+                        print(urlResponse.statusCode, terminator: "")
                     }
                     
                     posts.performRequestWithHandler(handler)

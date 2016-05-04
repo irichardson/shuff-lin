@@ -17,9 +17,9 @@ class Score: NSObject, NSCoding{
     override init(){
     }
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         score = Int(aDecoder.decodeIntForKey("score"))
-        word = aDecoder.decodeObjectForKey("word") as String
+        word = aDecoder.decodeObjectForKey("word") as! String
     }
     
     func encodeWithCoder(aCoder: NSCoder) {

@@ -13,7 +13,7 @@ class ImageHelper {
     class func imageScaledToSize(image: UIImage, newSize: CGSize) -> UIImage {
         UIGraphicsBeginImageContext(newSize)
         image.drawInRect(CGRectMake(0, 0, newSize.width, newSize.height))
-        var newImage = UIGraphicsGetImageFromCurrentImageContext()
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return newImage
     }

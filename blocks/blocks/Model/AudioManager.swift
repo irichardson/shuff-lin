@@ -25,8 +25,8 @@ class AudioManager {
     }
     
     func playAudio(fileName: String, fileType: String, loop: Int){
-        var url = NSURL.fileURLWithPath(NSBundle.mainBundle().pathForResource(fileName, ofType: fileType)!)
-        audioPlayer = AVAudioPlayer(contentsOfURL: url, error: nil)
+        let url = NSURL.fileURLWithPath(NSBundle.mainBundle().pathForResource(fileName, ofType: fileType)!)
+        audioPlayer = try! AVAudioPlayer(contentsOfURL: url)
         audioPlayer.play()
         audioPlayer.numberOfLoops = loop
     }
